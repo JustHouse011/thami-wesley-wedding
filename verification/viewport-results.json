@@ -1,0 +1,376 @@
+{
+  "results": [
+    {
+      "viewport": 1280,
+      "scrollWidth": 1280,
+      "scrollHeight": 6532,
+      "sections": [
+        {
+          "name": "hero",
+          "x": 0,
+          "width": 1280
+        },
+        {
+          "name": "invitation copy-section",
+          "x": 0,
+          "width": 1280
+        },
+        {
+          "name": "portraits",
+          "x": 0,
+          "width": 1280
+        },
+        {
+          "name": "save-date copy-section",
+          "x": 0,
+          "width": 1280
+        },
+        {
+          "name": "polaroids",
+          "x": 0,
+          "width": 1280
+        },
+        {
+          "name": "rsvp-intro copy-section",
+          "x": 0,
+          "width": 1280
+        },
+        {
+          "name": "rsvp",
+          "x": 0,
+          "width": 1280
+        }
+      ],
+      "root": {
+        "x": 0,
+        "width": 1280,
+        "bottom": 6532
+      },
+      "main": {
+        "x": 0,
+        "width": 1280,
+        "bottom": 6532
+      },
+      "footer": {
+        "x": 0,
+        "width": 1280,
+        "bottom": 6532
+      },
+      "title": {
+        "x": 139,
+        "width": 1000.453125,
+        "bottom": 613
+      },
+      "countdown": {
+        "x": 375,
+        "width": 530,
+        "bottom": 886
+      },
+      "form": {
+        "x": 53.0859375,
+        "width": 1183.765625,
+        "bottom": 5984.828125
+      },
+      "fontSize": "126px",
+      "heroFit": "cover"
+    },
+    {
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "scrollHeight": 6532,
+      "sections": [
+        {
+          "name": "hero",
+          "x": 0,
+          "width": 1440
+        },
+        {
+          "name": "invitation copy-section",
+          "x": 0,
+          "width": 1440
+        },
+        {
+          "name": "portraits",
+          "x": 0,
+          "width": 1440
+        },
+        {
+          "name": "save-date copy-section",
+          "x": 0,
+          "width": 1440
+        },
+        {
+          "name": "polaroids",
+          "x": 0,
+          "width": 1440
+        },
+        {
+          "name": "rsvp-intro copy-section",
+          "x": 0,
+          "width": 1440
+        },
+        {
+          "name": "rsvp",
+          "x": 0,
+          "width": 1440
+        }
+      ],
+      "root": {
+        "x": 0,
+        "width": 1440,
+        "bottom": 6532
+      },
+      "main": {
+        "x": 0,
+        "width": 1440,
+        "bottom": 6532
+      },
+      "footer": {
+        "x": 0,
+        "width": 1440,
+        "bottom": 6532
+      },
+      "title": {
+        "x": 219,
+        "width": 1000.453125,
+        "bottom": 613
+      },
+      "countdown": {
+        "x": 455,
+        "width": 530,
+        "bottom": 886
+      },
+      "form": {
+        "x": 133.0859375,
+        "width": 1183.765625,
+        "bottom": 5984.828125
+      },
+      "fontSize": "126px",
+      "heroFit": "cover"
+    },
+    {
+      "viewport": 1600,
+      "scrollWidth": 1600,
+      "scrollHeight": 6532,
+      "sections": [
+        {
+          "name": "hero",
+          "x": 0,
+          "width": 1600
+        },
+        {
+          "name": "invitation copy-section",
+          "x": 0,
+          "width": 1600
+        },
+        {
+          "name": "portraits",
+          "x": 0,
+          "width": 1600
+        },
+        {
+          "name": "save-date copy-section",
+          "x": 0,
+          "width": 1600
+        },
+        {
+          "name": "polaroids",
+          "x": 0,
+          "width": 1600
+        },
+        {
+          "name": "rsvp-intro copy-section",
+          "x": 0,
+          "width": 1600
+        },
+        {
+          "name": "rsvp",
+          "x": 0,
+          "width": 1600
+        }
+      ],
+      "root": {
+        "x": 0,
+        "width": 1600,
+        "bottom": 6532
+      },
+      "main": {
+        "x": 0,
+        "width": 1600,
+        "bottom": 6532
+      },
+      "footer": {
+        "x": 0,
+        "width": 1600,
+        "bottom": 6532
+      },
+      "title": {
+        "x": 299,
+        "width": 1000.453125,
+        "bottom": 613
+      },
+      "countdown": {
+        "x": 535,
+        "width": 530,
+        "bottom": 886
+      },
+      "form": {
+        "x": 213.0859375,
+        "width": 1183.765625,
+        "bottom": 5984.828125
+      },
+      "fontSize": "126px",
+      "heroFit": "cover",
+      "approvedMeanChannelDifference": 0.02574135027556644
+    },
+    {
+      "viewport": 1920,
+      "scrollWidth": 1920,
+      "scrollHeight": 6532,
+      "sections": [
+        {
+          "name": "hero",
+          "x": 0,
+          "width": 1920
+        },
+        {
+          "name": "invitation copy-section",
+          "x": 0,
+          "width": 1920
+        },
+        {
+          "name": "portraits",
+          "x": 0,
+          "width": 1920
+        },
+        {
+          "name": "save-date copy-section",
+          "x": 0,
+          "width": 1920
+        },
+        {
+          "name": "polaroids",
+          "x": 0,
+          "width": 1920
+        },
+        {
+          "name": "rsvp-intro copy-section",
+          "x": 0,
+          "width": 1920
+        },
+        {
+          "name": "rsvp",
+          "x": 0,
+          "width": 1920
+        }
+      ],
+      "root": {
+        "x": 0,
+        "width": 1920,
+        "bottom": 6532
+      },
+      "main": {
+        "x": 0,
+        "width": 1920,
+        "bottom": 6532
+      },
+      "footer": {
+        "x": 0,
+        "width": 1920,
+        "bottom": 6532
+      },
+      "title": {
+        "x": 459,
+        "width": 1000.453125,
+        "bottom": 613
+      },
+      "countdown": {
+        "x": 695,
+        "width": 530,
+        "bottom": 886
+      },
+      "form": {
+        "x": 373.0859375,
+        "width": 1183.765625,
+        "bottom": 5984.828125
+      },
+      "fontSize": "126px",
+      "heroFit": "cover"
+    },
+    {
+      "viewport": 2560,
+      "scrollWidth": 2560,
+      "scrollHeight": 6532,
+      "sections": [
+        {
+          "name": "hero",
+          "x": 0,
+          "width": 2560
+        },
+        {
+          "name": "invitation copy-section",
+          "x": 0,
+          "width": 2560
+        },
+        {
+          "name": "portraits",
+          "x": 0,
+          "width": 2560
+        },
+        {
+          "name": "save-date copy-section",
+          "x": 0,
+          "width": 2560
+        },
+        {
+          "name": "polaroids",
+          "x": 0,
+          "width": 2560
+        },
+        {
+          "name": "rsvp-intro copy-section",
+          "x": 0,
+          "width": 2560
+        },
+        {
+          "name": "rsvp",
+          "x": 0,
+          "width": 2560
+        }
+      ],
+      "root": {
+        "x": 0,
+        "width": 2560,
+        "bottom": 6532
+      },
+      "main": {
+        "x": 0,
+        "width": 2560,
+        "bottom": 6532
+      },
+      "footer": {
+        "x": 0,
+        "width": 2560,
+        "bottom": 6532
+      },
+      "title": {
+        "x": 779,
+        "width": 1000.453125,
+        "bottom": 613
+      },
+      "countdown": {
+        "x": 1015,
+        "width": 530,
+        "bottom": 886
+      },
+      "form": {
+        "x": 693.0859375,
+        "width": 1183.765625,
+        "bottom": 5984.828125
+      },
+      "fontSize": "126px",
+      "heroFit": "cover"
+    }
+  ],
+  "errors": []
+}

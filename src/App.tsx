@@ -1,0 +1,183 @@
+import { Fragment, useEffect, useRef, useState, type FormEvent } from 'react';
+import { timeRemaining } from './countdown';
+
+const asset = (name: string) => `/assets/${name}`;
+
+function FlipUnit({ value, label, index }: { value: number; label: string; index: number }) {
+  const [flip, setFlip] = useState<{ from: string; to: string } | null>(null);
+  const previousValue = useRef(value);
+  const displayedValue = String(value).padStart(2, '0');
+
+  useEffect(() => {
+    if (previousValue.current === value) return;
+    const nextFlip = { from: String(previousValue.current).padStart(2, '0'), to: displayedValue };
+    previousValue.current = value;
+    setFlip(nextFlip);
+    const timer = window.setTimeout(() => setFlip(null), 700);
+    return () => window.clearTimeout(timer);
+  }, [value, displayedValue]);
+
+  const oldValue = flip?.from ?? displayedValue;
+  const newValue = flip?.to ?? displayedValue;
+  return (
+    <div className={`countdown-unit${flip ? ' is-flipping' : ''}`} style={{ left: index * 133.91 }}>
+      <div className="flip-half flip-top" />
+      <div className="flip-half flip-bottom" />
+      <span className="countdown-number" aria-hidden="true">{displayedValue}</span>
+      {flip && <>
+        <div className="flip-flap flip-flap-top" aria-hidden="true"><span>{oldValue}</span></div>
+        <div className="flip-flap flip-flap-bottom" aria-hidden="true"><span>{newValue}</span></div>
+      </>}
+      <img className="flip-seam" src={asset(['3-194-a86f9.svg', '3-194-da417.svg', '3-194-08b2b.svg', '3-194-d1baf.svg'][index])} alt="" />
+      {[14.01, 110.56].map(left => [45.16, 54.5].map(top => <img key={`${left}-${top}`} className="flip-pin" src={asset('3-194-70917.svg')} alt="" style={{ left, top }} />))}
+      <span className="countdown-label">{label}</span>
+    </div>
+  );
+}
+
+function Countdown() {
+  const [remaining, setRemaining] = useState(timeRemaining);
+  useEffect(() => {
+    const timer = window.setInterval(() => setRemaining(timeRemaining()), 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+  const labels = ['DAYS', 'HOURS', 'MINUTES', 'SECONDS'];
+  return (
+    <div className="countdown" role="timer" aria-label="Time until 28 November 2026">
+      {remaining.map((value, index) => (
+        <Fragment key={labels[index]}>
+          {index > 0 && <img className="countdown-colon" src={asset('3-194-a62bc.svg')} alt="" style={{ left: 127.69 + (index - 1) * 133.91 }} />}
+          <FlipUnit value={value} label={labels[index]} index={index} />
+        </Fragment>
+      ))}
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="hero" aria-labelledby="couple-name" data-node-id="3:194">
+      <img className="hero-underlay" src={asset('3-194-ccca4.png')} alt="" />
+      <img className="hero-photo" src={asset('3-194-44410.png')} alt="Thami and Wesley smiling together" />
+      <div className="hero-shade" />
+      <img className="hero-pattern" src={asset('3-194-d0f59.svg')} alt="" />
+      <div className="hero-logo">
+        <img className="logo-disc" src={asset('3-194-65dd4.svg')} alt="" />
+        <img className="logo-mark" src={asset('3-194-0d203.svg')} alt="Thami and Wesley monogram" />
+        <img className="logo-triangle" src={asset('3-194-a334a.svg')} alt="" />
+      </div>
+      <h1 id="couple-name">THAMI &amp; WESLEY</h1>
+      <div className="wedding-caption">
+        <span className="wedding-day">Wedding day</span>
+        <img src={asset('3-194-679e5.svg')} alt="" />
+        <span className="wedding-date">28 november 2026</span>
+      </div>
+      <Countdown />
+    </section>
+  );
+}
+
+function Invitation() {
+  return (
+    <section className="invitation copy-section" aria-labelledby="invitation-title" data-node-id="3:189">
+      <h2 id="invitation-title">You are invited</h2>
+      <p><strong className="invitation-lead">Two hearts. One love. One beautiful beginning.</strong><span><br />{' With hearts full of love and gratitude, '}<strong>Mr. MThami Kotlololo &amp; Dr. Wesley Willis</strong>{' invite you to share in the joy of their wedding celebration as they honour the journey that brought them together and begin their next chapter as one. Join them for a celebration of love, laughter, partnership and a lifetime of beautiful adventures, surrounded by the people who have supported, embraced and celebrated their love along the way'}</span></p>
+    </section>
+  );
+}
+
+function Portraits() {
+  return (
+    <section className="portraits" aria-label="Thami and Wesley" data-node-id="3:68">
+      <h2>THAMI &amp; WESLEY</h2>
+      <div className="portrait-right"><img src={asset('3-68-ff2dc.png')} alt="Thami and Wesley celebrating together" /></div>
+      <div className="portrait-left"><img src={asset('3-68-27ceb.png')} alt="Thami and Wesley standing together" /></div>
+      <div className="portrait-logo-panel"><img src={asset('3-68-8c4f2.svg')} alt="Thami and Wesley monogram" /></div>
+    </section>
+  );
+}
+
+function SaveTheDate() {
+  return (
+    <section className="save-date copy-section" aria-labelledby="save-date-title" data-node-id="3:63">
+      <h2 id="save-date-title">SAVE THE DATE</h2>
+      <p><span>The celebration of Thami Kotlololo &amp; Wesley Willis is set for </span><span className="date-emphasis">28 November 2026 </span><span>in </span><strong className="date-emphasis">Mamelodi, Pretoria</strong><span>. Please save the date and prepare to join them for a beautiful celebration of love, commitment and the beginning of their next chapter together. A formal invitation, including full venue details and further information, will follow.</span></p>
+    </section>
+  );
+}
+
+function Polaroids() {
+  return (
+    <section className="polaroids" aria-label="Memories together" data-node-id="5:514">
+      <div className="polaroid polaroid-first"><img src={asset('5-514-75ca7.png')} alt="Celebrating a graduation together" /></div>
+      <div className="polaroid polaroid-second"><img src={asset('5-514-feb77.png')} alt="Thami and Wesley sharing a sunny moment" /></div>
+      <img className="polaroid-pattern" src={asset('5-514-4fcce.svg')} alt="" />
+    </section>
+  );
+}
+
+function RsvpIntroduction() {
+  return (
+    <section className="rsvp-intro copy-section" aria-labelledby="rsvp-intro-title" data-node-id="3:19">
+      <h2 id="rsvp-intro-title">Kindly RSVP</h2>
+      <p>We would be honoured to celebrate this beautiful occasion with you. Please let Thami &amp; Wesley know if you’ll be joining them as they gather with family, friends and loved ones for this unforgettable day. Kindly confirm your attendance using the RSVP form below.</p>
+    </section>
+  );
+}
+
+function Rsvp() {
+  const [attendance, setAttendance] = useState('yes');
+  const [submitted, setSubmitted] = useState(false);
+  function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+  return (
+    <section className="rsvp" aria-labelledby="rsvp-title" data-node-id="5:518">
+      <img className="rsvp-photo" src={asset('5-518-024a3.png')} alt="" />
+      <div className="rsvp-shade" />
+      <div className="rsvp-content">
+        <h2 id="rsvp-title">RSVP</h2>
+        <div className="event-details"><p><span className="event-icon calendar-icon" aria-hidden="true" />December 15, 2023</p><p><span className="event-icon location-icon" aria-hidden="true" />The Grand Ballroom, Downtown City Center</p></div>
+        <div className="schedule">
+          {['Schedule', 'Arrival', 'Reception', 'Live Music & Dancing'].map((label, index) => (
+            <Fragment key={label}>
+              {index > 0 && <img className="schedule-separator" src={asset(index === 3 ? '5-518-1d854.svg' : '5-518-2c2e6.svg')} alt="" />}
+              <div className="schedule-item"><span>{label}</span>{index === 0 ? <img src={asset('5-518-2d231.svg')} alt="" /> : <strong>{['', '11:00 AM', '2:30 PM', '9:00 PM'][index]}</strong>}</div>
+            </Fragment>
+          ))}
+        </div>
+        <form onSubmit={submit} onChange={() => setSubmitted(false)}>
+          <div className="name-fields">
+            <label>FIRST NAME<input name="firstName" placeholder="John" autoComplete="given-name" required /></label>
+            <label>LAST NAME<input name="lastName" placeholder="Doe" autoComplete="family-name" required /></label>
+          </div>
+          <label className="phone-field">PHONE NUMBER<input name="phone" type="tel" placeholder="+1" autoComplete="tel" required /></label>
+          <fieldset className="attendance"><legend className="visually-hidden">Will you attend?</legend>
+            <label className={attendance === 'yes' ? 'selected' : ''}><input type="radio" name="attendance" value="yes" checked={attendance === 'yes'} onChange={() => setAttendance('yes')} /><img className="emoji" src={asset('rsvp-accept.png')} alt="" /><span>I’ll be there</span></label>
+            <label className={attendance === 'no' ? 'selected' : ''}><input type="radio" name="attendance" value="no" checked={attendance === 'no'} onChange={() => setAttendance('no')} /><img className="emoji" src={asset('rsvp-decline.png')} alt="" /><span>Can’t make it</span></label>
+          </fieldset>
+          <button className="submit-rsvp" type="submit">Submit RSVP</button>
+          {submitted && <p className="form-status" role="status">Your response has not been sent. RSVP submission is not available yet.</p>}
+        </form>
+      </div>
+    </section>
+  );
+}
+
+export default function App() {
+  return (
+    <main className="desktop-page">
+      <Hero />
+      <Invitation />
+      <Portraits />
+      <SaveTheDate />
+      <Polaroids />
+      <RsvpIntroduction />
+      <Rsvp />
+      <img className="pattern-invitation" src={asset('222-24-40211.svg')} alt="" />
+      <div className="pattern-middle" aria-hidden="true" />
+      <div className="pattern-footer" aria-hidden="true" />
+    </main>
+  );
+}

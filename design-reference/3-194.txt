@@ -1,0 +1,200 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/93e1e807-a4f8-446b-9c85-4a77277ed837";
+const imgPexelsEvgeniyVolivach102564961 = `${assetPathPrefix}/ccca4.png`;
+const imgOriginal1 = `${assetPathPrefix}/44410.png`;
+const imgGroup6 = `${assetPathPrefix}/a62bc.svg`;
+const imgGroup9 = `${assetPathPrefix}/a86f9.svg`;
+const imgEllipse5 = `${assetPathPrefix}/70917.svg`;
+const imgGroup10 = `${assetPathPrefix}/8c19d.svg`;
+const imgEllipse6 = `${assetPathPrefix}/56979.svg`;
+const imgAsset16X1 = `${assetPathPrefix}/25fed.svg`;
+const imgGroup11 = `${assetPathPrefix}/d1baf.svg`;
+const imgGroup12 = `${assetPathPrefix}/08b2b.svg`;
+const imgGroup13 = `${assetPathPrefix}/da417.svg`;
+const imgVector = `${assetPathPrefix}/679e5.svg`;
+const imgEllipse13 = `${assetPathPrefix}/65dd4.svg`;
+const imgLayerX00201 = `${assetPathPrefix}/0d203.svg`;
+const imgPolygon1 = `${assetPathPrefix}/a334a.svg`;
+const imgPatOne1 = `${assetPathPrefix}/d0f59.svg`;
+
+export default function FirstSection() {
+  return (
+    <div className="relative size-full" data-node-id="3:194" data-name="First-section">
+      <div className="absolute h-[2306px] left-[-112px] top-[-97px] w-[1712px]" data-node-id="3:244" data-name="pexels-evgeniy-volivach-10256496 1">
+        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgPexelsEvgeniyVolivach102564961} />
+      </div>
+      <div className="absolute h-[981px] left-[-143px] top-[-32px] w-[1743px]" data-node-id="207:19" data-name="original 1">
+        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgOriginal1} />
+      </div>
+      <div className="absolute bg-[rgba(0,0,0,0.15)] h-[952px] left-0 top-0 w-[1600px]" data-node-id="3:394" />
+      <div className="absolute contents left-[535px] top-[753px]" data-node-id="208:23">
+        <div className="absolute h-[21.8px] left-[662.69px] top-[793.49px] w-[6.229px]" data-node-id="208:24">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup6} />
+        </div>
+        <div className="absolute h-[21.8px] left-[796.6px] top-[793.49px] w-[6.229px]" data-node-id="208:27">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup6} />
+        </div>
+        <div className="absolute h-[21.8px] left-[930.51px] top-[793.49px] w-[6.229px]" data-node-id="208:30">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup6} />
+        </div>
+        <div className="absolute backdrop-blur-[10.2px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.4)] border-solid h-[48.685px] left-[541.23px] rounded-[7px] top-[754.56px] w-[115.229px]" data-node-id="208:33" />
+        <div className="absolute backdrop-blur-[10.2px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.21)] border-solid h-[48.685px] left-[541.23px] rounded-[7px] top-[805.94px] w-[115.229px]" data-node-id="208:34" />
+        <p className="-translate-x-full [word-break:break-word] absolute font-['Share_Tech:Regular'] leading-[normal] left-[640.17px] not-italic text-[98px] text-right text-white top-[753px] tracking-[-8.33px] whitespace-nowrap" data-node-id="208:35" style={{ fontFeatureSettings: '"ordn" 1' }}>
+          66
+        </p>
+        <div className="absolute h-[12.457px] left-[535px] top-[798.16px] w-[127.686px]" data-node-id="208:36">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup9} />
+        </div>
+        <div className="absolute left-[549.01px] size-[3.114px] top-[798.16px]" data-node-id="208:40">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[549.01px] size-[3.114px] top-[807.5px]" data-node-id="208:41">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[645.56px] size-[3.114px] top-[798.16px]" data-node-id="208:42">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[645.56px] size-[3.114px] top-[807.5px]" data-node-id="208:43">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute backdrop-blur-[10.2px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.2)] border-solid h-[48.685px] left-[942.43px] rounded-[7px] top-[805.94px] w-[115.229px]" data-node-id="208:44" />
+        <p className="-translate-x-full [word-break:break-word] absolute font-['Share_Tech:Regular'] leading-[normal] left-[1042.43px] not-italic text-[#f2f2f2] text-[98px] text-right top-[753px] tracking-[-8.33px] whitespace-nowrap" data-node-id="208:45" style={{ fontFeatureSettings: '"ordn" 1' }}>
+          01
+        </p>
+        <div className="absolute h-[12.457px] left-[936.43px] top-[798.16px] w-[127.686px]" data-node-id="208:46">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup10} />
+        </div>
+        <div className="absolute backdrop-blur-[10.2px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.4)] border-solid h-[48.685px] left-[942.43px] rounded-[7px] top-[754.56px] w-[115.229px]" data-node-id="208:50" />
+        <div className="absolute left-[998.43px] size-[3.114px] top-[798.16px]" data-node-id="208:51">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse6} />
+        </div>
+        <div className="absolute left-[998.43px] size-[3.114px] top-[798.16px]" data-node-id="208:52">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse6} />
+        </div>
+        <div className="absolute contents left-[943.43px] top-[767px]" data-node-id="208:54" data-name="Mask Group">
+          <div className="absolute h-[43px] left-[967.43px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-24px_-15px] mask-size-[115px_36px] top-[782px] w-[68px]" data-node-id="208:56" style={{ maskImage: `url("${imgAsset16X1}")` }} data-name="Asset 1@6x 1" />
+          <p className="-translate-x-full [word-break:break-word] absolute font-['Share_Tech:Regular'] leading-[normal] left-[1041.93px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-14.5px_14px] mask-size-[115px_36px] not-italic text-[#f2f2f2] text-[98px] text-right top-[753px] tracking-[-8.33px] whitespace-nowrap" data-node-id="208:57" style={{ fontFeatureSettings: '"ordn" 1', maskImage: `url("${imgAsset16X1}")` }}>
+            01
+          </p>
+        </div>
+        <div className="absolute h-[45px] left-[965.43px] top-[771px] w-[70px]" data-node-id="208:58" data-name="Asset 1 1" />
+        <div className="absolute h-[12.457px] left-[936.43px] top-[798.16px] w-[127.686px]" data-node-id="208:59">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup11} />
+        </div>
+        <div className="absolute left-[1046.43px] size-[3.114px] top-[799px]" data-node-id="208:63">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[1046.43px] size-[3.114px] top-[808.34px]" data-node-id="208:64">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[951.43px] size-[3.114px] top-[798px]" data-node-id="208:65">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[951.43px] size-[3.114px] top-[807.34px]" data-node-id="208:66">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute backdrop-blur-[10.2px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.4)] border-solid h-[48.685px] left-[809.06px] rounded-[7px] top-[754.56px] w-[115.229px]" data-node-id="208:67" />
+        <div className="absolute backdrop-blur-[10.2px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.2)] border-solid h-[48.685px] left-[809.06px] rounded-[7px] top-[805.94px] w-[115.229px]" data-node-id="208:68" />
+        <p className="-translate-x-full [word-break:break-word] absolute font-['Share_Tech:Regular'] leading-[normal] left-[908.19px] not-italic text-[#f2f2f2] text-[98px] text-right top-[753px] tracking-[-8.33px] whitespace-nowrap" data-node-id="208:69" style={{ fontFeatureSettings: '"ordn" 1' }}>
+          00
+        </p>
+        <div className="absolute h-[12.457px] left-[802.83px] top-[798.16px] w-[127.686px]" data-node-id="208:70">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup12} />
+        </div>
+        <div className="absolute left-[816.84px] size-[3.114px] top-[798.16px]" data-node-id="208:74">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[816.84px] size-[3.114px] top-[807.5px]" data-node-id="208:75">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[913.39px] size-[3.114px] top-[798.16px]" data-node-id="208:76">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[913.39px] size-[3.114px] top-[807.5px]" data-node-id="208:77">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute backdrop-blur-[10.2px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.4)] border-solid h-[48.685px] left-[675.14px] rounded-[7px] top-[754.56px] w-[115.229px]" data-node-id="208:78" />
+        <div className="absolute backdrop-blur-[10.2px] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.2)] border-solid h-[48.685px] left-[675.14px] rounded-[7px] top-[805.94px] w-[115.229px]" data-node-id="208:79" />
+        <p className="-translate-x-full [word-break:break-word] absolute font-['Share_Tech:Regular'] leading-[normal] left-[774.27px] not-italic text-[#f2f2f2] text-[98px] text-right top-[753px] tracking-[-8.33px] whitespace-nowrap" data-node-id="208:80" style={{ fontFeatureSettings: '"ordn" 1' }}>
+          20
+        </p>
+        <div className="absolute h-[12.457px] left-[668.91px] top-[798.16px] w-[127.686px]" data-node-id="208:81">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup13} />
+        </div>
+        <div className="absolute left-[682.93px] size-[3.114px] top-[798.16px]" data-node-id="208:85">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[682.93px] size-[3.114px] top-[807.5px]" data-node-id="208:86">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[779.47px] size-[3.114px] top-[798.16px]" data-node-id="208:87">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <div className="absolute left-[779.47px] size-[3.114px] top-[807.5px]" data-node-id="208:88">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse5} />
+        </div>
+        <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Inter:Regular'] font-normal leading-[normal] left-[598.93px] not-italic text-[#f2f2f2] text-[18px] text-center top-[862px] whitespace-nowrap" data-node-id="208:89">
+          DAYS
+        </p>
+        <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Inter:Regular'] font-normal leading-[normal] left-[732.43px] not-italic text-[#f2f2f2] text-[18px] text-center top-[862px] whitespace-nowrap" data-node-id="208:90">
+          HOURS
+        </p>
+        <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Inter:Regular'] font-normal leading-[normal] left-[866.43px] not-italic text-[#f2f2f2] text-[18px] text-center top-[862px] whitespace-nowrap" data-node-id="208:91">
+          MINUTES
+        </p>
+        <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Inter:Regular'] font-normal leading-[normal] left-[1000.43px] not-italic text-[#f2f2f2] text-[18px] text-center top-[862px] whitespace-nowrap" data-node-id="208:92">
+          SECONDS
+        </p>
+      </div>
+      <div className="absolute h-[482px] left-[321px] overflow-clip top-[201px] w-[957px]" data-node-id="3:304" data-name="Asset 3 1">
+        <div className="absolute contents inset-[15.35%_5.12%_-1.04%_14.11%]" data-node-id="3:305" data-name="Layer 1">
+          <div className="absolute contents inset-[94.19%_5.12%_-1.04%_14.11%]" data-node-id="3:306" data-name="Group">
+            <div className="absolute contents inset-[94.19%_5.12%_-1.04%_14.11%]" data-node-id="3:307" data-name="Group">
+              <div className="absolute contents inset-[94.19%_5.12%_-1.04%_14.11%]" data-node-id="3:308" data-name="Group">
+                <div className="absolute contents inset-[94.19%_5.12%_-1.04%_14.11%]" data-node-id="3:318" data-name="Group">
+                  <p className="[word-break:break-word] absolute font-['Aboreto:Regular'] inset-[94.81%_65.52%_-1.04%_14.11%] leading-[normal] not-italic text-[26px] text-white whitespace-nowrap" data-node-id="214:2">
+                    Wedding day
+                  </p>
+                  <p className="[word-break:break-word] absolute font-['Aboreto:Regular'] inset-[94.19%_5.12%_2.07%_65.31%] leading-[normal] not-italic text-[26px] text-shadow-[0px_4px_4px_rgba(0,0,0,0.46)] text-white" data-node-id="214:4">
+                    28 november 2026
+                  </p>
+                  <div className="absolute inset-[97.73%_45.38%_1.99%_45.17%]" data-node-id="3:352" data-name="Vector">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute drop-shadow-[0px_4px_2px_rgba(0,0,0,0.55)] inset-[15.35%_39.5%_43.98%_39.6%] overflow-clip" data-node-id="206:8" data-name="TW Logo 1">
+            <div className="absolute inset-[-4.59%_-3%_-4.59%_-4%]" data-node-id="221:163">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse13} />
+            </div>
+            <div className="absolute contents inset-0" data-node-id="206:9" data-name="Layer_x0020_1">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLayerX00201} />
+            </div>
+            <div className="absolute inset-[31.12%_40%_56.63%_40%]" data-node-id="225:1525">
+              <div className="absolute bottom-1/4 left-[6.7%] right-[6.7%] top-0">
+                <img alt="" className="block max-w-none size-full" src={imgPolygon1} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Fraunces:Regular'] font-normal leading-[normal] left-[299px] text-[126px] text-shadow-[0px_4px_4px_rgba(0,0,0,0.45)] text-white top-[458px] whitespace-nowrap" data-node-id="207:21" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>{`THAMI & WESLEY`}</p>
+      <div className="absolute h-[203px] left-[-576px] overflow-clip top-[-45px] w-[998px]" data-node-id="222:196" data-name="Pat one 1">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgPatOne1} />
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Images and SVGs will be stored as constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

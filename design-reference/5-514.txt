@@ -1,0 +1,49 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/6eb2bf76-e133-4b3c-96a0-2ee267b6a5ce";
+const imgPhoto01 = `${assetPathPrefix}/75ca7.png`;
+const imgPhoto2 = `${assetPathPrefix}/feb77.png`;
+const imgLayerX00201 = `${assetPathPrefix}/4fcce.svg`;
+
+function PollaroidFrame({ className }: { className?: string }) {
+  return (
+    <div className={className || "bg-white border-[#d6d6d6] border-[0.873px] border-dashed h-[908.727px] overflow-clip relative shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[801.491px]"} data-node-id="221:152" data-name="pollaroid frame">
+      <div className="absolute left-[22.7px] overflow-clip size-[518.833px] top-[46.28px]" data-node-id="221:153" data-name="photo-01">
+        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgPhoto01} />
+      </div>
+    </div>
+  );
+}
+
+export default function FifthSection() {
+  return (
+    <div className="relative size-full" data-node-id="5:514" data-name="Fifth-section">
+      <div className="absolute bg-[#191919] h-[952px] left-0 top-0 w-[1600px]" data-node-id="221:157" />
+      <PollaroidFrame className="absolute flex h-[908.727px] items-center justify-center left-[102px] top-[22px] w-[801.491px]" />
+      <div className="absolute flex h-[834.135px] items-center justify-center left-[691.04px] top-[37.3px] w-[677.412px]" data-node-id="221:159">
+        <div className="flex-none rotate-[9.03deg]">
+          <div className="bg-white border-[#d6d6d6] border-[0.873px] border-dashed h-[754.667px] overflow-clip relative shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[566px]" data-name="pollaroid frame">
+            <div className="absolute left-[22.7px] overflow-clip size-[518.833px] top-[46.28px]" data-node-id="I221:159;221:153" data-name="photo-01">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgPhoto2} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute h-[251px] left-[1315px] overflow-clip top-[681px] w-[256px]" data-node-id="222:1180" data-name="pat 2 1">
+        <div className="absolute contents inset-0" data-node-id="222:1181" data-name="Layer_x0020_1">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLayerX00201} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Images and SVGs will be stored as constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

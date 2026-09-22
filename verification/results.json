@@ -1,0 +1,57 @@
+{
+  "viewport": "1600 × 1000",
+  "page": "1600 × 7767",
+  "errors": [],
+  "metrics": [
+    {
+      "section": "hero",
+      "meanChannelDifference": 4.128,
+      "pixelsOverThresholdPercent": 3.8
+    },
+    {
+      "section": "invitation",
+      "meanChannelDifference": 1.938,
+      "pixelsOverThresholdPercent": 4.02
+    },
+    {
+      "section": "portraits",
+      "meanChannelDifference": 0.983,
+      "pixelsOverThresholdPercent": 0.69
+    },
+    {
+      "section": "save-date",
+      "meanChannelDifference": 1.888,
+      "pixelsOverThresholdPercent": 2.19
+    },
+    {
+      "section": "polaroids",
+      "meanChannelDifference": 1.563,
+      "pixelsOverThresholdPercent": 2.57
+    },
+    {
+      "section": "rsvp-intro",
+      "meanChannelDifference": 0.672,
+      "pixelsOverThresholdPercent": 1.4
+    },
+    {
+      "section": "rsvp",
+      "meanChannelDifference": 1.564,
+      "pixelsOverThresholdPercent": 1.59
+    },
+    {
+      "section": "footer",
+      "meanChannelDifference": 1.402,
+      "pixelsOverThresholdPercent": 3.67
+    }
+  ],
+  "checks": [
+    "All images decoded",
+    "All fonts loaded",
+    "Countdown matches frozen time",
+    "Countdown ticks across minute boundary",
+    "Countdown clamps at zero",
+    "RSVP fields editable",
+    "Attendance choice selectable",
+    "Submit stays local and reports no transmission"
+  ]
+}

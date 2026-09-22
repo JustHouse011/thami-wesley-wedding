@@ -1,0 +1,31 @@
+export default function FourthSection() {
+  return (
+    <div className="contents relative size-full" data-node-id="3:63" data-name="Fourth-section">
+      <div className="absolute bg-[#f2f2f2] h-[562px] left-0 top-[3202px] w-[1600px]" data-node-id="3:64" />
+      <div className="-translate-x-1/2 [word-break:break-word] absolute contents left-[calc(50%+48.5px)] not-italic text-black top-[3354px]" data-node-id="5:510" data-name="About">
+        <p className="absolute font-['Abhaya_Libre:Regular'] h-[184px] leading-[0] left-[calc(50%-335px)] text-[0px] top-[3428px] tracking-[-0.21px] w-[767px]" data-node-id="5:511">
+          <span className="leading-[normal] text-[21px]">{`The celebration of Thami Kotlololo & Wesley Willis is set for `}</span>
+          <span className="leading-[normal] text-[32px]">{`28 November 2026 `}</span>
+          <span className="leading-[normal] text-[21px]">{`in `}</span>
+          <span className="font-['Abhaya_Libre:Bold'] leading-[normal] text-[32px]">Mamelodi, Pretoria</span>
+          <span className="leading-[normal] text-[21px]">. Please save the date and prepare to join them for a beautiful celebration of love, commitment and the beginning of their next chapter together. A formal invitation, including full venue details and further information, will follow.</span>
+        </p>
+        <p className="absolute font-['Aboreto:Regular'] leading-[normal] left-[465px] text-[26px] top-[3354px] whitespace-nowrap" data-node-id="5:512">
+          SAVE THE DATE
+        </p>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Images and SVGs will be stored as constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

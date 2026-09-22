@@ -1,0 +1,163 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/9b804ed0-8e73-43c9-a2fc-1937ae79d617";
+const img2021 = `${assetPathPrefix}/024a3.png`;
+const imgTimeSchedule = `${assetPathPrefix}/2d231.svg`;
+const imgLine3 = `${assetPathPrefix}/2c2e6.svg`;
+const imgLine2 = `${assetPathPrefix}/1d854.svg`;
+
+export default function SeventhSection() {
+  return (
+    <div className="relative size-full" data-node-id="5:518" data-name="Seventh-section">
+      <div className="absolute h-[1199px] left-[-20px] top-[-20px] w-[1836px]" data-node-id="9:527" data-name="202 1">
+        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={img2021} />
+      </div>
+      <div className="absolute bg-[rgba(0,0,0,0.74)] h-[966px] left-0 top-px w-[1600px]" data-node-id="220:144" />
+      <div className="absolute content-stretch flex flex-col gap-[28.525px] h-[725px] items-center left-[15.79px] top-[132px] w-[1578.361px]" data-node-id="219:54" data-name="Container">
+        <div className="content-stretch flex flex-col gap-[19.016px] items-start relative shrink-0 w-[1183.771px]" data-node-id="219:55" data-name="Leading">
+          <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="219:56" data-name="Title">
+            <div className="[word-break:break-word] flex flex-col font-['Aboreto:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[47.541px] text-white w-full" data-node-id="219:57">
+              <p className="leading-[normal]">RSVP</p>
+            </div>
+          </div>
+          <div className="[word-break:break-word] content-stretch flex font-['Abhaya_Libre:Regular'] gap-[38.033px] items-start leading-[1.5] not-italic py-[9.508px] relative shrink-0 text-[16.639px] text-white w-full" data-node-id="219:59" data-name="detail">
+            <p className="relative shrink-0 whitespace-pre" data-node-id="219:60">{`📅   December 15, 2023`}</p>
+            <p className="relative shrink-0 whitespace-nowrap" data-node-id="219:61">
+              📍 The Grand Ballroom, Downtown City Center
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[9.508px] items-center justify-center relative shrink-0 w-full" data-node-id="219:62">
+            <div className="border-[#e8e8e8] border-[1.189px] border-solid content-stretch flex flex-[1_0_0] flex-col gap-[9.508px] items-center justify-center min-w-px px-[28.525px] py-[19.016px] relative rounded-[14.262px]" data-node-id="219:63" data-name="detail">
+              <div className="[word-break:break-word] flex flex-col font-['Abhaya_Libre:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#f2f2f2] text-[14.262px] whitespace-nowrap" data-node-id="219:64">
+                <p className="leading-[1.7]">Schedule</p>
+              </div>
+              <div className="relative shrink-0 size-[28.525px]" data-node-id="219:65" data-name="time-schedule">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgTimeSchedule} />
+              </div>
+            </div>
+            <div className="flex h-[0.12px] items-center justify-center relative shrink-0 w-[23.77px]" data-node-id="219:69">
+              <div className="flex-none rotate-[-0.29deg] skew-x-[0.85deg]">
+                <div className="h-0 relative w-[23.77px]">
+                  <div className="absolute inset-[-0.59px_0_-0.59px_-2.5%]">
+                    <img alt="" className="block max-w-none size-full" src={imgLine3} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="[word-break:break-word] border-[#e8e8e8] border-[1.189px] border-solid content-stretch flex flex-[1_0_0] flex-col gap-[9.508px] items-center justify-center leading-[0] min-w-px not-italic px-[28.525px] py-[19.016px] relative rounded-[14.262px] whitespace-nowrap" data-node-id="219:70" data-name="detail">
+              <div className="flex flex-col font-['Abhaya_Libre:Regular'] justify-center relative shrink-0 text-[#f2f2f2] text-[14.262px]" data-node-id="219:71">
+                <p className="leading-[1.7]">Arrival</p>
+              </div>
+              <div className="flex flex-col font-['Abhaya_Libre:Bold'] justify-center relative shrink-0 text-[16.639px] text-white" data-node-id="219:72">
+                <p className="leading-[1.7]">11:00 AM</p>
+              </div>
+            </div>
+            <div className="flex h-[0.12px] items-center justify-center relative shrink-0 w-[23.77px]" data-node-id="219:73">
+              <div className="flex-none rotate-[-0.29deg] skew-x-[0.85deg]">
+                <div className="h-0 relative w-[23.77px]">
+                  <div className="absolute inset-[-0.59px_0_-0.59px_-2.5%]">
+                    <img alt="" className="block max-w-none size-full" src={imgLine3} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="[word-break:break-word] border-[#e8e8e8] border-[1.189px] border-solid content-stretch flex flex-[1_0_0] flex-col gap-[9.508px] items-center justify-center leading-[0] min-w-px not-italic px-[28.525px] py-[19.016px] relative rounded-[14.262px] whitespace-nowrap" data-node-id="219:74" data-name="detail">
+              <div className="flex flex-col font-['Abhaya_Libre:Regular'] justify-center relative shrink-0 text-[#f2f2f2] text-[14.262px]" data-node-id="219:75">
+                <p className="leading-[1.7]">Reception</p>
+              </div>
+              <div className="flex flex-col font-['Abhaya_Libre:Bold'] justify-center relative shrink-0 text-[16.639px] text-white" data-node-id="219:76">
+                <p className="leading-[1.7]">2:30 PM</p>
+              </div>
+            </div>
+            <div className="flex h-[0.12px] items-center justify-center relative shrink-0 w-[23.77px]" data-node-id="219:77">
+              <div className="flex-none rotate-[-0.29deg] skew-x-[0.85deg]">
+                <div className="h-0 relative w-[23.77px]">
+                  <div className="absolute inset-[-0.59px_0_-0.59px_-2.5%]">
+                    <img alt="" className="block max-w-none size-full" src={imgLine2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="[word-break:break-word] border-[#e8e8e8] border-[1.189px] border-solid content-stretch flex flex-[1_0_0] flex-col gap-[9.508px] items-center justify-center leading-[0] min-w-px not-italic px-[28.525px] py-[19.016px] relative rounded-[14.262px] whitespace-nowrap" data-node-id="219:78" data-name="detail">
+              <div className="flex flex-col font-['Abhaya_Libre:Regular'] justify-center relative shrink-0 text-[#f2f2f2] text-[14.262px]" data-node-id="219:79">
+                <p className="leading-[1.7]">{`Live Music & Dancing`}</p>
+              </div>
+              <div className="flex flex-col font-['Abhaya_Libre:Bold'] justify-center relative shrink-0 text-[16.639px] text-white" data-node-id="219:80">
+                <p className="leading-[1.7]">9:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[19.016px] h-[396.967px] items-start relative shrink-0 w-[1183.771px]" data-node-id="219:81" data-name="Trailing">
+          <div className="content-stretch cursor-pointer flex flex-col gap-[9.508px] items-start relative shrink-0 w-full" data-node-id="219:84" data-name="Form">
+            <div className="content-stretch flex gap-[9.508px] items-start relative shrink-0 w-full" data-node-id="219:85" data-name="row">
+              <button className="content-stretch flex flex-col gap-[4.754px] items-start relative shrink-0 w-[587.131px]" data-node-id="219:86" data-name="Input">
+                <p className="[word-break:break-word] capitalize font-['Abhaya_Libre:Regular'] leading-[1.5] not-italic relative shrink-0 text-[16.95px] text-left text-white whitespace-nowrap" data-node-id="I219:86;1:154">
+                  FIRST NAME
+                </p>
+                <div className="border-[#d9d9d9] border-b-[length:var(--sds-size-stroke-border,1.189px)] border-solid content-stretch flex h-[59.426px] items-center justify-center overflow-clip p-[19.016px] relative shrink-0 w-full" data-node-id="I219:86;1:155" data-name="Input">
+                  <p className="[word-break:break-word] flex-[1_0_0] font-['Roboto:Regular'] font-normal leading-[1.5] min-w-px opacity-60 relative text-[14.26px] text-left text-white" data-node-id="I219:86;1:156" style={{ fontVariationSettings: '"wdth" 100' }}>
+                    John
+                  </p>
+                </div>
+              </button>
+              <button className="content-stretch flex flex-col gap-[4.754px] items-start relative shrink-0 w-[587.131px]" data-node-id="219:87" data-name="Input">
+                <p className="[word-break:break-word] capitalize font-['Abhaya_Libre:Regular'] leading-[1.5] not-italic relative shrink-0 text-[16.95px] text-left text-white whitespace-nowrap" data-node-id="I219:87;1:154">
+                  lAST NAME
+                </p>
+                <div className="border-[#d9d9d9] border-b-[length:var(--sds-size-stroke-border,1.189px)] border-solid content-stretch flex h-[59.426px] items-center justify-center overflow-clip p-[19.016px] relative shrink-0 w-full" data-node-id="I219:87;1:155" data-name="Input">
+                  <p className="[word-break:break-word] flex-[1_0_0] font-['Roboto:Regular'] font-normal leading-[1.5] min-w-px opacity-60 relative text-[14.26px] text-left text-white" data-node-id="I219:87;1:156" style={{ fontVariationSettings: '"wdth" 100' }}>
+                    Doe
+                  </p>
+                </div>
+              </button>
+            </div>
+            <button className="content-stretch flex flex-col gap-[4.754px] h-[85.574px] items-start relative shrink-0 w-[1183.771px]" data-node-id="219:88" data-name="Input">
+              <p className="[word-break:break-word] capitalize font-['Abhaya_Libre:Regular'] leading-[1.5] not-italic relative shrink-0 text-[16.95px] text-left text-white whitespace-nowrap" data-node-id="I219:88;1:154">
+                PHONE NUMBER
+              </p>
+              <div className="border-[#d9d9d9] border-b-[length:var(--sds-size-stroke-border,1.189px)] border-solid content-stretch flex h-[59.426px] items-center justify-center overflow-clip p-[19.016px] relative shrink-0 w-full" data-node-id="I219:88;1:155" data-name="Input">
+                <p className="[word-break:break-word] flex-[1_0_0] font-['Roboto:Regular'] font-normal leading-[1.5] min-w-px opacity-60 relative text-[14.26px] text-left text-white" data-node-id="I219:88;1:156" style={{ fontVariationSettings: '"wdth" 100' }}>
+                  +1
+                </p>
+              </div>
+            </button>
+          </div>
+          <div className="[word-break:break-word] content-stretch flex items-center leading-[1.5] relative shrink-0 whitespace-nowrap" data-node-id="219:89" data-name="Option">
+            <div className="bg-[rgba(255,255,255,0.4)] border-b-[1.189px] border-l-[1.189px] border-solid border-t-[1.189px] border-white content-stretch flex gap-[9.508px] h-[71.311px] items-center justify-center p-[19.016px] relative rounded-bl-[19.016px] rounded-tl-[19.016px] shrink-0 text-black w-[225.82px]" data-node-id="I219:89;1:147" data-name="Option">
+              <p className="font-['Roboto:Regular'] font-normal relative shrink-0 text-[26.15px]" data-node-id="I219:89;1:147;1:134" style={{ fontVariationSettings: '"wdth" 100' }}>
+                😀
+              </p>
+              <p className="font-['Abhaya_Libre:Regular'] not-italic relative shrink-0 text-[19.78px]" data-node-id="I219:89;1:147;1:135">
+                I’ll be there
+              </p>
+            </div>
+            <button className="border-b-[1.189px] border-r-[1.189px] border-solid border-t-[1.189px] border-white content-stretch cursor-pointer flex gap-[9.508px] h-[71.311px] items-center justify-center p-[19.016px] relative rounded-br-[19.016px] rounded-tr-[19.016px] shrink-0 text-left w-[225.82px]" data-node-id="I219:89;1:148" data-name="Option">
+              <p className="font-['Roboto:Regular'] font-normal opacity-60 relative shrink-0 text-[#656565] text-[26.15px]" data-node-id="I219:89;1:148;1:140" style={{ fontVariationSettings: '"wdth" 100' }}>
+                😞
+              </p>
+              <p className="font-['Abhaya_Libre:Regular'] not-italic opacity-60 relative shrink-0 text-[19.78px] text-white" data-node-id="I219:89;1:148;1:141">
+                Can’t make it
+              </p>
+            </button>
+          </div>
+          <div className="bg-[#2e2e2e] content-stretch flex items-center overflow-clip px-[28.525px] py-[19.016px] relative rounded-[14.262px] shrink-0" data-node-id="219:90" data-name="Button">
+            <p className="[word-break:break-word] font-['Abhaya_Libre:Bold'] leading-[normal] not-italic relative shrink-0 text-[16.639px] text-white whitespace-nowrap" data-node-id="219:91">
+              Submit RSVP
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Images and SVGs will be stored as constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

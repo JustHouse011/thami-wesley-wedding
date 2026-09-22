@@ -1,0 +1,46 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/e29e1bdd-8dbc-4dd0-a03b-481b7e08205f";
+const imgPexelsEvgeniyVolivach102564951 = `${assetPathPrefix}/27ceb.png`;
+const imgPexelsEvgeniyVolivach102565071 = `${assetPathPrefix}/ff2dc.png`;
+const imgGroup = `${assetPathPrefix}/8c4f2.svg`;
+
+export default function ThirdSection() {
+  return (
+    <div className="contents relative size-full" data-node-id="3:68" data-name="Third-section">
+      <div className="absolute contents left-0 top-[2345px]" data-node-id="3:69" data-name="second">
+        <div className="absolute h-[857px] left-0 overflow-clip top-[2345px] w-[800px]" data-node-id="3:70" data-name="image-left">
+          <div className="absolute h-[882px] left-[-1px] top-0 w-[799px]" data-node-id="3:446" data-name="pexels-evgeniy-volivach-10256495 1">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgPexelsEvgeniyVolivach102564951} />
+          </div>
+        </div>
+        <div className="absolute contents left-[800px] top-[2345px]" data-node-id="3:72">
+          <div className="absolute bg-[#f2f2f2] h-[857px] left-[800px] top-[2345px] w-[800px]" data-node-id="3:73" />
+          <div className="absolute contents inset-[33.38%_15.63%_61.9%_61.5%]" data-node-id="215:15" data-name="Layer_x0020_1">
+            <div className="absolute inset-[33.38%_15.63%_61.9%_61.5%]" data-node-id="215:16" data-name="Group">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute contents left-[53px] top-[1488px]" data-node-id="3:136" data-name="First">
+        <p className="[word-break:break-word] absolute font-['Fraunces:Regular'] font-normal h-[109px] leading-[99.67499542236328%] left-[53px] text-[126px] text-black top-[1746px] w-[790px]" data-node-id="215:6" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>{`THAMI & WESLEY`}</p>
+        <div className="absolute h-[857px] left-[800px] overflow-clip top-[1488px] w-[800px]" data-node-id="3:187" data-name="image-right">
+          <div className="absolute h-[1038px] left-0 top-[-85px] w-[800px]" data-node-id="3:445" data-name="pexels-evgeniy-volivach-10256507 1">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgPexelsEvgeniyVolivach102565071} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Images and SVGs will be stored as constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.
