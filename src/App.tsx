@@ -101,7 +101,23 @@ function SaveTheDate() {
   return (
     <section className="save-date copy-section" aria-labelledby="save-date-title" data-node-id="3:63">
       <h2 id="save-date-title">SAVE THE DATE</h2>
-      <p><span>The celebration of Thami Kotlololo &amp; Wesley Willis is set for </span><span className="date-emphasis">28 November 2026 </span><span>in </span><strong className="date-emphasis">Mamelodi, Pretoria</strong><span>. Please save the date and prepare to join them for a beautiful celebration of love, commitment and the beginning of their next chapter together. A formal invitation, including full venue details and further information, will follow.</span></p>
+      <div className="save-date-content">
+        <p>Together with their families,<br />Thami Kotlolo &amp; Wesley Willis request the pleasure of your company at their wedding celebration.</p>
+        <p>Come share in a day of love, culture, and laughter.</p>
+        <ul className="save-date-details">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-14 4h3m4 0h3" /></svg><span><strong>Date:</strong> 28 November 2028</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg><span><strong>Time:</strong> 13:00 (until the music stops)</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg><span><strong>Venue:</strong> Mothong African Heritage Mamelodi, Pretoria, South Africa</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4a4 4 0 0 1-8 0Z" /></svg><span><strong>Dress Code:</strong> Casually Traditional</span></li>
+        </ul>
+        <p>Kindly secure your spot by <strong>15 October 2026</strong></p>
+        <a className="save-date-rsvp" href="#rsvp-form" onClick={event => {
+          event.preventDefault();
+          const form = document.getElementById('rsvp-form');
+          form?.focus({ preventScroll: true });
+          form?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+        }}>Click here to RSVP</a>
+      </div>
     </section>
   );
 }
@@ -147,7 +163,7 @@ function Rsvp() {
             </Fragment>
           ))}
         </div>
-        <form onSubmit={submit} onChange={() => setSubmitted(false)}>
+        <form id="rsvp-form" tabIndex={-1} aria-label="RSVP form" onSubmit={submit} onChange={() => setSubmitted(false)}>
           <div className="name-fields">
             <label>FIRST NAME<input name="firstName" placeholder="John" autoComplete="given-name" required /></label>
             <label>LAST NAME<input name="lastName" placeholder="Doe" autoComplete="family-name" required /></label>
