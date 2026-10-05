@@ -154,7 +154,10 @@ function Rsvp() {
       <div className="rsvp-shade" />
       <div className="rsvp-content">
         <h2 id="rsvp-title">RSVP</h2>
-        <div className="event-details"><p><span className="event-icon calendar-icon" aria-hidden="true" />December 15, 2023</p><p><span className="event-icon location-icon" aria-hidden="true" />The Grand Ballroom, Downtown City Center</p></div>
+        <div className="event-details">
+          <p><svg className="event-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-14 4h3m4 0h3" /></svg><span>28 November 2028</span></p>
+          <p><svg className="event-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg><span>Mothong African Heritage Mamelodi, Pretoria, South Africa</span></p>
+        </div>
         <div className="schedule">
           {['Schedule', 'Arrival', 'Reception', 'Live Music & Dancing'].map((label, index) => (
             <Fragment key={label}>
@@ -168,7 +171,7 @@ function Rsvp() {
             <label>FIRST NAME<input name="firstName" placeholder="John" autoComplete="given-name" required /></label>
             <label>LAST NAME<input name="lastName" placeholder="Doe" autoComplete="family-name" required /></label>
           </div>
-          <label className="phone-field">PHONE NUMBER<input name="phone" type="tel" placeholder="+1" autoComplete="tel" required /></label>
+          <label className="phone-field">PHONE NUMBER<input name="phone" type="tel" placeholder="+27" autoComplete="tel" required /></label>
           <fieldset className="attendance"><legend className="visually-hidden">Will you attend?</legend>
             <label className={attendance === 'yes' ? 'selected' : ''}><input type="radio" name="attendance" value="yes" checked={attendance === 'yes'} onChange={() => setAttendance('yes')} /><img className="emoji" src={asset('rsvp-accept.png')} alt="" /><span>I’ll be there</span></label>
             <label className={attendance === 'no' ? 'selected' : ''}><input type="radio" name="attendance" value="no" checked={attendance === 'no'} onChange={() => setAttendance('no')} /><img className="emoji" src={asset('rsvp-decline.png')} alt="" /><span>Can’t make it</span></label>
