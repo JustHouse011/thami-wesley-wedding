@@ -122,7 +122,7 @@ img { display: block; }
 .emoji { font: 400 26.15px/1.5 Roboto, sans-serif; }
 .submit-rsvp { display: block; margin-top: 19.016px; padding: 19.016px 28.525px; border: 0; border-radius: 14.262px; background: #2e2e2e; color: white; font: 700 16.639px 'Abhaya Libre', serif; cursor: pointer; }
 .form-status { margin-top: 16px; font-size: 17px; }
-.pattern-invitation { position: absolute; right: -5.667px; top: 945px; width: 666.667px; height: 121.087px; }
+.pattern-invitation { position: absolute; z-index: 1; right: -5.667px; top: 945px; width: 666.667px; height: 121.087px; }
 .pattern-middle, .pattern-footer { position: absolute; left: 0; width: 100%; height: 325px; background-color: black; background-repeat: repeat-x; background-position: calc(50% + 1px) 0; background-size: 1598px 325px; }
 .pattern-middle { z-index: 1; top: 3558px; background-image: url('/assets/222-1204-9c145.svg'); }
 .pattern-footer { top: 6207px; background-image: url('/assets/222-517-9c145.svg'); }
