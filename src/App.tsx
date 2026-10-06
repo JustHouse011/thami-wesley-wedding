@@ -100,7 +100,7 @@ function Portraits() {
 function SaveTheDate() {
   return (
     <section className="save-date copy-section" aria-labelledby="save-date-title" data-node-id="3:63">
-      <h2 id="save-date-title">SAVE THE DATE</h2>
+      <h2 id="save-date-title">You Are Invited</h2>
       <div className="save-date-content">
         <p>Together with their families,<br />Thami Kotlolo &amp; Wesley Willis request the pleasure of your company at their wedding celebration.</p>
         <p>Come share in a day of love, culture, and laughter.</p>
