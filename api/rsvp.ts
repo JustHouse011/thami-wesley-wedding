@@ -42,7 +42,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
   const details = [
     ['Guest', guest], ['Phone', phone], ['Attendance', attendanceLabel],
     ['Event', 'Thami Kotlolo & Wesley Willis'], ['Date', '30th November 2026'],
-    ['Venue', 'Mothong African Heritage\nMamelodi, Pretoria, South Africa'],
+    ['Venue', 'River Meadow Manor\nTwin River Estates\n1 Jan Smuts Avenue\nCenturion\n0062'],
   ];
   const text = `WEDDING RSVP\n\n${details.map(([label, value]) => `${label}:\n${value}`).join('\n\n')}`;
   const html = `<html><body style="margin:0;background:#f7f5f0;color:#29241d;font-family:Georgia,serif"><div style="max-width:560px;margin:32px auto;padding:32px;background:#ffffff;border-top:4px solid #a38b60"><h1 style="font-size:24px;letter-spacing:3px">WEDDING RSVP</h1>${details.map(([label, value]) => `<p style="margin:24px 0;line-height:1.6"><strong>${label}:</strong><br>${escapeHtml(value).replace(/\n/g, '<br>')}</p>`).join('')}</div></body></html>`;
