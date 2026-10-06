@@ -202,10 +202,10 @@ function Rsvp() {
           <p><svg className="event-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg><span>River Meadow Manor, Twin River Estates, 1 Jan Smuts Avenue, Centurion, 0062</span></p>
         </div>
         <div className="schedule">
-          {['Schedule', 'Arrival', 'Reception', 'Live Music & Dancing'].map((label, index) => (
+          {['Schedule', 'Arrival', 'Ceremony', 'Live Music & Dancing'].map((label, index) => (
             <Fragment key={label}>
               {index > 0 && <img className="schedule-separator" src={asset(index === 3 ? '5-518-1d854.svg' : '5-518-2c2e6.svg')} alt="" />}
-              <div className="schedule-item"><span>{label}</span>{index === 0 ? <img src={asset('5-518-2d231.svg')} alt="" /> : <strong>{['', '11:00 AM', '2:30 PM', '9:00 PM'][index]}</strong>}</div>
+              <div className="schedule-item"><span>{label}</span>{index === 0 ? <img src={asset('5-518-2d231.svg')} alt="" /> : <strong>{['', '14:30', '15:00', '9:00 PM'][index]}</strong>}</div>
             </Fragment>
           ))}
         </div>
