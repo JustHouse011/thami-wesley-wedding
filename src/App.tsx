@@ -143,10 +143,53 @@ function RsvpIntroduction() {
 
 function Rsvp() {
   const [attendance, setAttendance] = useState('yes');
-  const [submitted, setSubmitted] = useState(false);
-  function submit(event: FormEvent<HTMLFormElement>) {
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<{ message: string; error: boolean } | null>(null);
+  const inFlight = useRef(false);
+  const lastAttempt = useRef<{ payload: string; key: string } | null>(null);
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    if (inFlight.current) return;
+    const form = event.currentTarget;
+    const fields = new FormData(form);
+    const payload = {
+      firstName: String(fields.get('firstName') ?? '').trim(),
+      lastName: String(fields.get('lastName') ?? '').trim(),
+      phone: String(fields.get('phone') ?? '').trim(),
+      attendance: attendance === 'yes' ? 'attending' : 'declined',
+    };
+    for (const name of ['firstName', 'lastName', 'phone'] as const) {
+      const input = form.elements.namedItem(name) as HTMLInputElement;
+      input.setCustomValidity(payload[name] ? '' : 'Please complete this field.');
+      if (!payload[name]) { input.reportValidity(); return; }
+    }
+    const serialized = JSON.stringify(payload);
+    if (lastAttempt.current?.payload !== serialized) {
+      lastAttempt.current = { payload: serialized, key: crypto.randomUUID() };
+    }
+    inFlight.current = true;
+    setSending(true);
+    setStatus(null);
+    try {
+      const response = await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': lastAttempt.current!.key },
+        body: serialized,
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== true) throw new Error('Submission failed');
+      setStatus({ error: false, message: payload.attendance === 'attending'
+        ? `Thank you, ${payload.firstName}. We can't wait to celebrate with you!`
+        : `Thank you, ${payload.firstName}. Your RSVP has been received.` });
+      form.reset();
+      setAttendance('yes');
+      lastAttempt.current = null;
+    } catch {
+      setStatus({ error: true, message: "We couldn't submit your RSVP. Please try again." });
+    } finally {
+      inFlight.current = false;
+      setSending(false);
+    }
   }
   return (
     <section className="rsvp" aria-labelledby="rsvp-title" data-node-id="5:518">
@@ -166,7 +209,10 @@ function Rsvp() {
             </Fragment>
           ))}
         </div>
-        <form id="rsvp-form" tabIndex={-1} aria-label="RSVP form" onSubmit={submit} onChange={() => setSubmitted(false)}>
+        <form id="rsvp-form" tabIndex={-1} aria-label="RSVP form" aria-busy={sending} onSubmit={submit} onChange={event => {
+          if (event.target instanceof HTMLInputElement) event.target.setCustomValidity('');
+          setStatus(null);
+        }}>
           <div className="name-fields">
             <label>FIRST NAME<input name="firstName" placeholder="John" autoComplete="given-name" required /></label>
             <label>LAST NAME<input name="lastName" placeholder="Doe" autoComplete="family-name" required /></label>
@@ -176,8 +222,8 @@ function Rsvp() {
             <label className={attendance === 'yes' ? 'selected' : ''}><input type="radio" name="attendance" value="yes" checked={attendance === 'yes'} onChange={() => setAttendance('yes')} /><img className="emoji" src={asset('rsvp-accept.png')} alt="" /><span>I’ll be there</span></label>
             <label className={attendance === 'no' ? 'selected' : ''}><input type="radio" name="attendance" value="no" checked={attendance === 'no'} onChange={() => setAttendance('no')} /><img className="emoji" src={asset('rsvp-decline.png')} alt="" /><span>Can’t make it</span></label>
           </fieldset>
-          <button className="submit-rsvp" type="submit">Submit RSVP</button>
-          {submitted && <p className="form-status" role="status">Your response has not been sent. RSVP submission is not available yet.</p>}
+          <button className="submit-rsvp" type="submit" disabled={sending}>{sending ? 'Sending RSVP...' : 'Submit RSVP'}</button>
+          {status && <p className="form-status" role={status.error ? 'alert' : 'status'}>{status.message}</p>}
         </form>
       </div>
     </section>

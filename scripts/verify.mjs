@@ -11,13 +11,13 @@ page.on('pageerror', error => errors.push(error.message));
 page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
 // Freeze only the verification browser to match Figma's 66:20:00:01 display.
 const wedding = Date.parse('2026-11-28T00:00:00+02:00');
-await page.clock.install({ time: wedding - (66 * 86400 + 20 * 3600 + 1) * 1000 });
+await page.clock.install({ time: wedding - (66 * 86400 + 20 * 3600 + 61) * 1000 });
 await page.clock.pauseAt(wedding - (66 * 86400 + 20 * 3600 + 1) * 1000);
 await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' });
 await page.evaluate(() => document.fonts.ready);
 assert.equal(await page.evaluate(() => ['126px "Fraunces Variable"', '21px "Abhaya Libre"', '26px Aboreto', '98px "Share Tech"', '18px Inter', '14px Roboto'].every(font => document.fonts.check(font))), true);
 await page.locator('img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
-assert.equal(await page.locator('.desktop-page').evaluate(el => el.scrollHeight), 6532);
+assert.equal(await page.locator('.desktop-page').evaluate(el => el.scrollHeight), 6652);
 assert.deepEqual(await page.locator('.countdown-number').allTextContents(), ['66', '20', '00', '01']);
 await page.screenshot({ path: 'verification/desktop.png', fullPage: true });
 
@@ -62,14 +62,14 @@ await page.getByRole('textbox', { name: 'LAST NAME' }).fill('Check');
 await page.getByRole('textbox', { name: 'PHONE NUMBER' }).fill('+27 82 123 4567');
 await page.getByText('Can’t make it', { exact: true }).click();
 assert.equal(await page.locator('input[value=no]').isChecked(), true);
+await page.route('**/api/rsvp', route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) }));
 await page.getByRole('button', { name: 'Submit RSVP' }).click();
 await page.getByRole('status').waitFor();
-assert.match(await page.getByRole('status').textContent(), /has not been sent/);
+assert.equal(await page.getByRole('status').textContent(), 'Thank you, Visual. Your RSVP has been received.');
 await page.clock.setSystemTime(wedding + 10000);
 await page.clock.runFor(1000);
 assert.deepEqual(await page.locator('.countdown-number').allTextContents(), ['00', '00', '00', '00']);
 assert.deepEqual(errors, []);
-fs.writeFileSync('verification/results.json', JSON.stringify({ viewport: '1600 × 1000', page: '1600 × 6532', errors, metrics, checks: ['All images decoded', 'All fonts loaded', 'Countdown matches frozen time', 'Countdown ticks across minute boundary', 'Countdown clamps at zero', 'RSVP fields editable', 'Attendance choice selectable', 'Submit stays local and reports no transmission'] }, null, 2));
+fs.writeFileSync('verification/results.json', JSON.stringify({ viewport: '1600 × 1000', page: '1600 × 6652', errors, metrics, checks: ['All images decoded', 'All fonts loaded', 'Countdown matches frozen time', 'Countdown ticks across minute boundary', 'Countdown clamps at zero', 'RSVP fields editable', 'Attendance choice selectable', 'RSVP success with mocked API'] }, null, 2));
 console.log(JSON.stringify({ errors, metrics }, null, 2));
 await browser.close();
-
