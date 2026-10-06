@@ -106,11 +106,11 @@ function SaveTheDate() {
         <p>Come share in a day of love, culture, and laughter.</p>
         <ul className="save-date-details">
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-14 4h3m4 0h3" /></svg><span><strong>Date:</strong> 30th November 2026</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg><span><strong>Time:</strong> 13:00 (until the music stops)</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg><span><strong>Time:</strong> 14:30 for 15:00</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg><span><strong>Venue:</strong> River Meadow Manor, Twin River Estates, 1 Jan Smuts Avenue, Centurion, 0062</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4a4 4 0 0 1-8 0Z" /></svg><span><strong>Dress Code:</strong> Black</span></li>
         </ul>
-        <p>Kindly secure your spot by <strong>15 October 2026</strong></p>
+        <p>Kindly RSVP by latest <strong>3rd November 2026</strong></p>
         <a className="save-date-rsvp" href="#rsvp-form" onClick={event => {
           event.preventDefault();
           const form = document.getElementById('rsvp-form');
