@@ -167,6 +167,7 @@ img { display: block; }
 	.copy-section h2 { font-size: clamp(22px, 2.5vw, 26px); }
 	.copy-section p { margin-top: 40px; font-size: 0; }
 	.copy-section p > span { font-size: clamp(16px, 2vw, 21px); line-height: 1.35; }
+	.rsvp-intro p { font-size: clamp(16px, 2vw, 21px); line-height: 1.35; }
 	.invitation p > span { top: 0; }
 	.invitation-lead { display: block; margin-bottom: 18px; font-size: clamp(28px, 4vw, 37px); line-height: 1.1; }
 	.portraits { height: auto; display: grid; grid-template-columns: 1fr 1fr; }
@@ -218,6 +219,7 @@ img { display: block; }
 	.invitation, .save-date, .rsvp-intro { padding-inline: 20px; }
 	.invitation { padding-top: 72px; padding-bottom: 88px; }
 	.copy-section p > span { font-size: 16px; line-height: 1.45; }
+	.rsvp-intro p { font-size: 16px; line-height: 1.45; }
 	.invitation-lead { font-size: clamp(27px, 8vw, 34px); }
 	.portraits { display: block; }
 	.portraits h2 { padding: 74px 20px 64px; font-size: clamp(52px, 15vw, 72px); }
