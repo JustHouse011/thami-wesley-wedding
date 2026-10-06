@@ -197,6 +197,10 @@ export default function App() {
       <img className="pattern-invitation" src={asset('222-24-40211.svg')} alt="" />
       <div className="pattern-middle" aria-hidden="true" />
       <div className="pattern-footer" aria-hidden="true" />
+      <footer className="site-footer">
+        <p>© 2026 Thami &amp; Wesley. All rights reserved.</p>
+        <p>Designed By Bongani Nombamba</p>
+      </footer>
     </main>
   );
 }
