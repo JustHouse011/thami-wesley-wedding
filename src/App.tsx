@@ -234,14 +234,14 @@ export default function App() {
   return (
     <main className="desktop-page">
       <Hero />
+      <img className="pattern-invitation" src={asset('222-24-40211.svg')} alt="" />
       <Invitation />
       <Portraits />
       <SaveTheDate />
+      <div className="pattern-middle" aria-hidden="true" />
       <Polaroids />
       <RsvpIntroduction />
       <Rsvp />
-      <img className="pattern-invitation" src={asset('222-24-40211.svg')} alt="" />
-      <div className="pattern-middle" aria-hidden="true" />
       <div className="pattern-footer" aria-hidden="true" />
       <footer className="site-footer">
         <p>© 2026 Thami &amp; Wesley. All rights reserved.</p>
