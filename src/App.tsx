@@ -81,7 +81,7 @@ function Invitation() {
   return (
     <section className="invitation copy-section" aria-labelledby="invitation-title" data-node-id="3:189">
       <h2 id="invitation-title">You are invited</h2>
-      <p><strong className="invitation-lead">Two hearts. One love. One beautiful beginning.</strong><span><br />{' With hearts full of love and gratitude, '}<strong>Mr. MThami Kotlololo &amp; Dr. Wesley Willis</strong>{' invite you to share in the joy of their wedding celebration as they honour the journey that brought them together and begin their next chapter as one. Join them for a celebration of love, laughter, partnership and a lifetime of beautiful adventures, surrounded by the people who have supported, embraced and celebrated their love along the way'}</span></p>
+      <p><strong className="invitation-lead">Two hearts. One love. One beautiful beginning.</strong><span><br />{' With hearts full of love and gratitude, '}<strong>Mr. Thami Kotlololo &amp; Dr. Wesley Willis</strong>{' invite you to share in the joy of their wedding celebration as they honour the journey that brought them together and begin their next chapter as one. Join them for a celebration of love, laughter, partnership and a lifetime of beautiful adventures, surrounded by the people who have supported, embraced and celebrated their love along the way'}</span></p>
     </section>
   );
 }
