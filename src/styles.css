@@ -12,7 +12,7 @@ img { display: block; }
 .hero-photo { position: absolute; left: -8.9375%; top: 0; width: 108.9375%; height: 100%; object-fit: cover; object-position: center top; }
 .hero-shade { position: absolute; inset: 0; background: #00000026; }
 .hero-pattern { position: absolute; left: -576px; top: -45px; width: 998px; height: 203px; }
-.hero-logo { position: absolute; left: calc(50% - 65px); top: 320px; width: 130px; height: 127.4px; filter: drop-shadow(0 4px 2px #0000008c); overflow: hidden; }
+.hero-logo { position: absolute; left: calc(50% - 65px); top: 298px; width: 130px; height: 127.4px; filter: drop-shadow(0 4px 2px #0000008c); overflow: hidden; }
 .logo-disc { position: absolute; left: -4%; top: -4.59%; width: 107%; height: 109%; }
 .logo-mark { position: absolute; inset: 0; width: 100%; height: 100%; }
 .logo-triangle { position: absolute; left: 41.34%; top: 31.12%; width: 17.32%; height: 9.18%; }
@@ -152,7 +152,7 @@ img { display: block; }
 	.hero-underlay { display: none; }
 	.hero-photo { left: 0; top: clamp(60px, 8vw, 96px); width: 100%; height: auto; object-fit: contain; object-position: center top; mask-image: linear-gradient(to bottom, #000 65%, transparent 100%); }
 	.hero-pattern { left: -10%; top: -2%; width: 58%; height: auto; }
-	.hero-logo { left: 50%; top: clamp(255px, 38vw, 350px); width: clamp(110px, 13vw, 130px); height: auto; aspect-ratio: 200 / 196; transform: translateX(-50%); }
+	.hero-logo { left: 50%; top: calc(clamp(355px, 49vh, 458px) - clamp(107.8px, 12.74vw, 127.4px) - 32px); width: clamp(110px, 13vw, 130px); height: auto; aspect-ratio: 200 / 196; transform: translateX(-50%); }
 	.logo-disc { width: 107%; height: 109%; }
 	.logo-mark { width: 100%; height: 100%; }
 	.logo-triangle { left: 41.34%; top: 31.12%; width: 17.32%; height: 9.18%; }
@@ -207,7 +207,7 @@ img { display: block; }
 	.hero-underlay { display: none; }
 	.hero-photo { top: clamp(56px, 14vw, 90px); }
 	.hero-pattern { left: -22%; top: -1%; width: 78%; }
-	.hero-logo { top: clamp(210px, 60vw, 390px); width: clamp(90px, 24vw, 120px); height: auto; aspect-ratio: 200 / 196; }
+	.hero-logo { top: calc(42% - clamp(88.2px, 23.52vw, 117.6px) - 32px); width: clamp(90px, 24vw, 120px); height: auto; aspect-ratio: 200 / 196; }
 	.hero h1 { top: 42%; width: calc(100% - 32px); font-size: clamp(50px, 14vw, 76px); }
 	.wedding-caption { font-size: clamp(13px, 3.5vw, 17px); }
 	.wedding-day { top: 64%; margin-left: 0; transform: translateX(-50%); }
