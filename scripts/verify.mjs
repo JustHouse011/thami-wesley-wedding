@@ -10,7 +10,7 @@ const errors = [];
 page.on('pageerror', error => errors.push(error.message));
 page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
 // Freeze only the verification browser to match Figma's 66:20:00:01 display.
-const wedding = Date.parse('2026-11-28T00:00:00+02:00');
+const wedding = Date.parse('2026-11-30T00:00:00+02:00');
 await page.clock.install({ time: wedding - (66 * 86400 + 20 * 3600 + 61) * 1000 });
 await page.clock.pauseAt(wedding - (66 * 86400 + 20 * 3600 + 1) * 1000);
 await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' });

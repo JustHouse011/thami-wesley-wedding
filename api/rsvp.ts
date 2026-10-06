@@ -41,7 +41,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
   const attendanceLabel = attendance === 'attending' ? 'Attending' : 'Unable to Attend';
   const details = [
     ['Guest', guest], ['Phone', phone], ['Attendance', attendanceLabel],
-    ['Event', 'Thami Kotlolo & Wesley Willis'], ['Date', '28 November 2028'],
+    ['Event', 'Thami Kotlolo & Wesley Willis'], ['Date', '30th November 2026'],
     ['Venue', 'Mothong African Heritage\nMamelodi, Pretoria, South Africa'],
   ];
   const text = `WEDDING RSVP\n\n${details.map(([label, value]) => `${label}:\n${value}`).join('\n\n')}`;

@@ -36,7 +36,7 @@ try {
     assert.equal(Array.isArray(email.to) ? email.to[0] : email.to, 'info@thamidish.com');
     assert.match(email.subject, /^Wedding RSVP — /);
     assert.match(email.html, /&lt;Jane &amp; &quot;friend&quot;&gt;/);
-    assert.match(email.text, /28 November 2028/);
+    assert.match(email.text, /30th November 2026/);
     assert.ok(providerKey);
     assert.equal((await request({ ...valid, attendance: 'declined' })).code, 200);
     assert.match(email.text, /Unable to Attend/);

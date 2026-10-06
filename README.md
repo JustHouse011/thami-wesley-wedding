@@ -18,7 +18,7 @@ npm run verify
 
 Verification requires the dev server and a local Google Chrome installation. It freezes the test browser's clock to Figma's countdown values, saves a full-page screenshot and section comparisons to `verification/`, then checks the live timer and RSVP interactions with a mocked API response. Reference images appear on the left of each comparison; the local render appears on the right.
 
-The live countdown targets **28 November 2026, 00:00 Pretoria time (UTC+02:00)** and stops at zero. The existing RSVP form posts JSON to `/api/rsvp`, a Vercel Node serverless function that uses the Resend SDK to notify `info@thamidish.com`. The email event date is **28 November 2028**, as requested; the page design and countdown are unchanged.
+The live countdown targets **30th November 2026, 00:00 Pretoria time (UTC+02:00)** and stops at zero. The existing RSVP form posts JSON to `/api/rsvp`, a Vercel Node serverless function that uses the Resend SDK to notify `info@thamidish.com`. The RSVP email uses the same wedding date.
 
 ## RSVP configuration on Vercel
 

@@ -43,7 +43,7 @@ function Countdown() {
   }, []);
   const labels = ['DAYS', 'HOURS', 'MINUTES', 'SECONDS'];
   return (
-    <div className="countdown" role="timer" aria-label="Time until 28 November 2026">
+    <div className="countdown" role="timer" aria-label="Time until 30th November 2026">
       {remaining.map((value, index) => (
         <Fragment key={labels[index]}>
           {index > 0 && <img className="countdown-colon" src={asset('3-194-a62bc.svg')} alt="" style={{ left: 127.69 + (index - 1) * 133.91 }} />}
@@ -70,7 +70,7 @@ function Hero() {
       <div className="wedding-caption">
         <span className="wedding-day">Wedding day</span>
         <img src={asset('3-194-679e5.svg')} alt="" />
-        <span className="wedding-date">28 november 2026</span>
+        <span className="wedding-date">30th November 2026</span>
       </div>
       <Countdown />
     </section>
@@ -105,7 +105,7 @@ function SaveTheDate() {
         <p>Together with their families,<br />Thami Kotlolo &amp; Wesley Willis request the pleasure of your company at their wedding celebration.</p>
         <p>Come share in a day of love, culture, and laughter.</p>
         <ul className="save-date-details">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-14 4h3m4 0h3" /></svg><span><strong>Date:</strong> 28 November 2028</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-14 4h3m4 0h3" /></svg><span><strong>Date:</strong> 30th November 2026</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg><span><strong>Time:</strong> 13:00 (until the music stops)</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg><span><strong>Venue:</strong> Mothong African Heritage Mamelodi, Pretoria, South Africa</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3-6 4 3 5 3-2v11h8V10l3 2 3-5-6-4a4 4 0 0 1-8 0Z" /></svg><span><strong>Dress Code:</strong> Casually Traditional</span></li>
@@ -198,7 +198,7 @@ function Rsvp() {
       <div className="rsvp-content">
         <h2 id="rsvp-title">RSVP</h2>
         <div className="event-details">
-          <p><svg className="event-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-14 4h3m4 0h3" /></svg><span>28 November 2028</span></p>
+          <p><svg className="event-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18m-14 4h3m4 0h3" /></svg><span>30th November 2026</span></p>
           <p><svg className="event-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg><span>Mothong African Heritage Mamelodi, Pretoria, South Africa</span></p>
         </div>
         <div className="schedule">

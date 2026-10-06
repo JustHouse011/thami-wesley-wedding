@@ -10,7 +10,7 @@ for (const width of [1280, 1440, 1600, 1920, 2560]) {
   const page = await browser.newPage({ viewport: { width, height: 1000 }, deviceScaleFactor: 1 });
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
-  const instant = Date.parse('2026-11-28T00:00:00+02:00') - (66 * 86400 + 20 * 3600 + 1) * 1000;
+  const instant = Date.parse('2026-11-30T00:00:00+02:00') - (66 * 86400 + 20 * 3600 + 1) * 1000;
   await page.clock.install({ time: instant });
   await page.clock.pauseAt(instant);
   await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' });
