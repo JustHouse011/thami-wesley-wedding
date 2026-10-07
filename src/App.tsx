@@ -2,7 +2,7 @@ import { Fragment, useEffect, useRef, useState, type FormEvent } from 'react';
 import { timeRemaining } from './countdown';
 
 const asset = (name: string) => `/assets/${name}`;
-
+tttttt
 function FlipUnit({ value, label, index }: { value: number; label: string; index: number }) {
   const [flip, setFlip] = useState<{ from: string; to: string } | null>(null);
   const previousValue = useRef(value);
