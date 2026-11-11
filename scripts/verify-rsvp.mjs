@@ -19,7 +19,7 @@ export async function verifyRsvp(browser) {
       const last = form.getByRole('textbox', { name: 'Last Name' });
       const phone = form.getByRole('textbox', { name: 'Contact Number' });
       const email = form.getByRole('textbox', { name: 'Email Address' });
-      const notes = form.getByRole('textbox', { name: 'Special Notes / Dietary Requirements' });
+      const notes = form.getByRole('textbox', { name: 'Special Notes (optional)', exact: true });
       const guests = form.getByRole('combobox', { name: 'Number of Guests, Including Yourself' });
       const submit = form.getByRole('button', { name: 'Submit RSVP' });
       await submit.click();

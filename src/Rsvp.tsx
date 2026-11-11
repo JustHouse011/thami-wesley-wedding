@@ -91,7 +91,7 @@ export default function Rsvp() {
                 {Array.from({ length: MAX_GUESTS }, (_, index) => <option key={index + 1}>{index + 1}</option>)}
               </select>
             </label>}
-            <label>Special Notes / Dietary Requirements <small>(optional)</small>
+            <label>Special Notes <small>(optional)</small>
               <textarea name="notes" rows={3} maxLength={2000} placeholder="Let us know if there’s anything we should be aware of…" />
             </label>
           </fieldset>
