@@ -1,64 +1,72 @@
-import { chromium } from 'playwright';
-import { PNG } from 'pngjs';
-import fs from 'node:fs';
 import assert from 'node:assert/strict';
 
-const browser = await chromium.launch({ channel: 'chrome' });
-const errors = [];
-const results = [];
-for (const width of [1280, 1440, 1600, 1920, 2560]) {
-  const page = await browser.newPage({ viewport: { width, height: 1000 }, deviceScaleFactor: 1 });
-  page.on('pageerror', error => errors.push(error.message));
-  page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
-  const instant = Date.parse('2026-11-30T00:00:00+02:00') - (66 * 86400 + 20 * 3600 + 1) * 1000;
-  await page.clock.install({ time: instant });
-  await page.clock.pauseAt(instant);
-  await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' });
-  await page.evaluate(() => document.fonts.ready);
-  await page.locator('img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
-  const dimensions = await page.evaluate(() => {
-    const rect = selector => {
-      const { x, width, bottom } = document.querySelector(selector).getBoundingClientRect();
-      return { x, width, bottom };
-    };
-    return {
-      viewport: innerWidth,
-      scrollWidth: document.documentElement.scrollWidth,
-      scrollHeight: document.documentElement.scrollHeight,
-      sections: [...document.querySelectorAll('main > section')].map(el => ({ name: el.className, x: el.getBoundingClientRect().x, width: el.getBoundingClientRect().width })),
-      root: rect('#root'), main: rect('main'), footer: rect('.pattern-footer'),
-      title: rect('h1'), countdown: rect('.countdown'), form: rect('.rsvp-content'),
-      fontSize: getComputedStyle(document.querySelector('h1')).fontSize,
-      heroFit: getComputedStyle(document.querySelector('.hero-photo')).objectFit,
-    };
-  });
-  assert.equal(dimensions.scrollWidth, width);
-  assert.equal(dimensions.scrollHeight, 6532);
-  for (const box of [dimensions.root, dimensions.main, dimensions.footer, ...dimensions.sections]) {
-    assert.equal(box.x, 0);
-    assert.equal(box.width, width);
-  }
-  assert.equal(dimensions.footer.bottom, 6532);
-  assert.equal(dimensions.fontSize, '126px');
-  assert.equal(dimensions.heroFit, 'cover');
-  assert.equal(dimensions.countdown.width, 530);
-  assert.ok(dimensions.title.x >= 0 && dimensions.title.x + dimensions.title.width <= width);
-  assert.ok(dimensions.form.x >= 0 && dimensions.form.x + dimensions.form.width <= width);
-  await page.screenshot({ path: `verification/viewport-${width}.png`, fullPage: true });
-  if (width === 1600) {
-    const before = PNG.sync.read(fs.readFileSync('verification/approved-desktop.png'));
-    const after = PNG.sync.read(fs.readFileSync('verification/viewport-1600.png'));
-    let difference = 0;
-    for (let i = 0; i < after.data.length; i += 4) {
-      for (let c = 0; c < 3; c++) difference += Math.abs(before.data[i + c] - after.data[i + c]);
+export async function verifyViewports(browser, output) {
+  for (const width of [360, 390, 768, 1024, 1440, 1920]) {
+    const page = await browser.newPage({
+      viewport: { width, height: 1000 },
+      reducedMotion: 'reduce',
+      permissions: ['clipboard-read', 'clipboard-write'],
+    });
+    try {
+      const errors = [];
+      page.on('pageerror', error => errors.push(error.message));
+      page.on('response', response => { if (response.status() >= 400) errors.push(response.url()); });
+      await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
+      await page.evaluate(() => document.fonts.ready);
+      await page.locator('img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
+
+      assert.equal(await page.title(), 'Thami & Wesley — 27 November 2026');
+      assert.match(await page.locator('h1').innerText(), /Thami\s+Kotlolo\s+&\s+Wesley\s+Willis/);
+      assert.match(await page.locator('address').innerText(), /22913 Selalelo Street\s+Ext 4, Mamelodi East\s+Pretoria/i);
+      assert.deepEqual(await page.evaluate(() => ({
+        width: document.documentElement.scrollWidth,
+        sectionsInBounds: [...document.querySelectorAll('main > section')].every(section => {
+          const bounds = section.getBoundingClientRect();
+          return bounds.left >= 0 && bounds.right <= innerWidth;
+        }),
+      })), { width, sectionsInBounds: true });
+      assert.equal(await page.getByRole('form', { name: 'RSVP form' }).count(), 1);
+
+      if (width === 390 || width === 1440) {
+        if (process.env.AXE_SCRIPT) {
+          await page.addScriptTag({ path: process.env.AXE_SCRIPT });
+          const violations = await page.evaluate(async () => {
+            const result = await window.axe.run({ runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] });
+            return result.violations.map(({ id, nodes }) => ({ id, targets: nodes.map(node => node.target) }));
+          });
+          assert.deepEqual(violations, []);
+        }
+        await page.screenshot({ path: `${output}/${width === 390 ? 'mobile' : 'desktop'}.png`, fullPage: true });
+        await page.locator('#wedding').screenshot({ path: `${output}/invitation-${width}.png` });
+        await page.locator('#rsvp').screenshot({ path: `${output}/rsvp-${width}.png` });
+      }
+
+      await page.getByRole('link', { name: 'Confirm your attendance' }).press('Enter');
+      assert.equal(new URL(page.url()).hash, '#rsvp');
+      await page.getByRole('navigation', { name: 'Invitation links' }).getByRole('link', { name: 'The Art of Gay-ving' }).press('Enter');
+      assert.equal(new URL(page.url()).hash, '#gift-registry');
+      const cards = page.locator('.gifts details');
+      assert.equal(await cards.count(), 11);
+      for (const card of await cards.all()) {
+        const summary = card.locator('summary');
+        await summary.press('Enter');
+        assert.equal(await card.getAttribute('open'), '');
+        const description = card.locator('.gift-description');
+        await description.waitFor({ state: 'visible' });
+        assert.ok((await description.textContent()).trim().length > 100);
+        await summary.press('Space');
+        assert.equal(await card.getAttribute('open'), null);
+      }
+      for (const button of await page.locator('.treasury button').all()) {
+        const expected = await button.locator('..').locator('span').innerText();
+        await button.click();
+        assert.equal(await page.evaluate(() => navigator.clipboard.readText()), expected);
+        assert.match(await page.locator('.copy-status').innerText(), /copied\.$/);
+      }
+      assert.deepEqual(errors, []);
+      console.log(`Layout, navigation, accordions and clipboard passed at ${width}px.`);
+    } finally {
+      await page.close();
     }
-    dimensions.approvedMeanChannelDifference = difference / (after.width * after.height * 3);
-    assert.ok(dimensions.approvedMeanChannelDifference < 1, 'Approved desktop composition changed unexpectedly');
   }
-  results.push(dimensions);
-  await page.close();
 }
-assert.deepEqual(errors, []);
-fs.writeFileSync('verification/viewport-results.json', JSON.stringify({ results, errors }, null, 2));
-console.log(JSON.stringify(results.map(({ viewport, scrollWidth, approvedMeanChannelDifference }) => ({ viewport, scrollWidth, approvedMeanChannelDifference })), null, 2));
-await browser.close();

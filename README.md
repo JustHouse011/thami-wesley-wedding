@@ -1,6 +1,6 @@
 # Thami & Wesley
 
-Desktop implementation of Figma file `ftiHIbXdpTTuOUAXAAKVa1`, frame `3:2`.
+Responsive wedding invitation, RSVP and gift registry for Thami Kotlolo and Wesley Willis. The celebration begins at **14:00 on 27 November 2026** at 22913 Selalelo Street, Ext 4, Mamelodi East, Pretoria.
 
 ## Run
 
@@ -9,16 +9,17 @@ npm install
 npm run dev
 ```
 
-Open http://127.0.0.1:5173 at a viewport width of **1600 pixels** for the exact Figma composition. The page spans the full desktop viewport and ends at 6652 pixels, including the footer below the pattern. At 1600 pixels it preserves the approved composition; wider viewports extend the backgrounds while keeping content sizes intact. Existing tablet and mobile layouts are preserved.
+Open http://127.0.0.1:5173 to view the site.
 
 ```sh
 npm run build
+npx tsx scripts/test-rsvp.ts
 npm run verify
 ```
 
-Verification requires the dev server and a local Google Chrome installation. It freezes the test browser's clock to Figma's countdown values, saves a full-page screenshot and section comparisons to `verification/`, then checks the live timer and RSVP interactions with a mocked API response. Reference images appear on the left of each comparison; the local render appears on the right.
+Browser verification uses the dev server and a local Google Chrome installation. It covers layouts from 360px to 1920px, keyboard controls, registry accordions, clipboard actions and mocked RSVP submissions. Screenshots are written to `verification/redesign/`. To include an axe accessibility scan at 390px and 1440px, set `AXE_SCRIPT` to the local path of `axe.min.js` from axe-core.
 
-The live countdown targets **30th November 2026, 00:00 Pretoria time (UTC+02:00)** and stops at zero. The existing RSVP form posts JSON to `/api/rsvp`, a Vercel Node serverless function that uses the Resend SDK to notify `info@thamidish.com`. The RSVP email uses the same wedding date.
+Confirm the Treasury of Love bank details with the site owner before approving publication.
 
 ## RSVP configuration on Vercel
 
@@ -35,8 +36,8 @@ Set these server-side environment variables in Vercel for each required environm
 
 The server accepts only POST JSON, trims and validates inputs, safely escapes HTML, sends HTML and plain text, and returns success only when Resend accepts the message. Provider acceptance does not guarantee inbox delivery. The browser disables submission while sending and retains a per-attempt idempotency key for retries. Resend deduplicates that key for its retention window (24 hours); fallback keys also protect identical requests without a client key. No guest database is created.
 
-Run `npx tsx scripts/test-rsvp.ts` for mocked API checks and `node scripts/verify-rsvp.mjs` with Vite running on port 5173 for desktop/mobile browser checks. These checks do not send real emails. `npm run verify` also uses a mocked successful response.
+The RSVP API accepts the original four fields as well as optional email, guest count and notes. Legacy acceptances default to one guest and declines default to zero. The automated tests mock both successful and failed deliveries.
 
-Exact Figma image and vector exports are in `public/assets/`. Font files are served locally from Fontsource packages. The original design context and full desktop export are retained in `design-reference/`.
+The artwork used in the redesign was extracted from the supplied invitation. Font files are served locally from Fontsource packages. Earlier Figma assets and verification captures are retained for reference.
 
 
