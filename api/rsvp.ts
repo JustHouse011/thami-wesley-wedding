@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
-import { DRESS_CODE, MAX_GUESTS, WEDDING_ADDRESS, WEDDING_DATE_LABEL, WEDDING_TIME } from '../src/wedding';
+import { DRESS_CODE, MAX_GUESTS, WEDDING_ADDRESS, WEDDING_DATE_LABEL, WEDDING_TIME } from '../src/wedding.js';
 
 const escapeHtml = (value: string) => value.replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
