@@ -1,24 +1,22 @@
-import { useEffect, useRef, type PointerEvent } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { invitationArtwork } from './artwork';
 import Rsvp from './Rsvp';
 import Registry from './Registry';
 import { WEDDING_ISO, WEDDING_DATE_LABEL, WEDDING_TIME, WEDDING_ADDRESS, DRESS_CODE } from './wedding';
 
-function Invitation() {
-  function moveArtwork(event: PointerEvent<HTMLElement>) {
-    if (event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty('--art-shift', `${(event.clientX - bounds.left - bounds.width / 2) / bounds.width * 12}px`);
-  }
+const Cinematic = lazy(() => import('./cinematic/Cinematic').catch(() => ({ default: () => null })));
 
+function Invitation() {
   return (
-    <section className="invitation" id="wedding" aria-labelledby="couple" onPointerMove={moveArtwork}
-      onPointerLeave={event => event.currentTarget.style.removeProperty('--art-shift')}>
-      <img className="invitation-art art-left" src="/assets/invitation-left.png" alt="" />
-      <img className="invitation-art art-right" src="/assets/invitation-right.png" alt="" />
+    <section className="invitation" id="wedding" aria-labelledby="couple">
+      <div className="cinematic-viewport" aria-hidden="true" />
+      {invitationArtwork.filter(art => art.name !== 'emblem').map(({ name, src }) => (
+        <img key={name} data-art={name} className={`invitation-art art-${name}`} src={src} alt="" />
+      ))}
       <div className="invitation-copy">
-        <img className="emblem" src="/assets/invitation-emblem.png" alt="" width="231" height="133" />
+        <img className="emblem" data-art="emblem" src="/assets/cinematic/emblem.webp" alt="" width="237" height="157" />
         <p className="families">Together with our<br /> families</p>
-        <h1 id="couple">
+        <h1 id="couple" tabIndex={-1}>
           <span className="given-name">Thami</span><span className="surname">Kotlolo</span>
           <span className="ampersand">&amp;</span>
           <span className="given-name">Wesley</span><span className="surname">Willis</span>
@@ -42,29 +40,39 @@ function Invitation() {
 }
 
 export default function App() {
-  const content = useRef<HTMLElement>(null);
+  const site = useRef<HTMLDivElement>(null);
+  const [motion, setMotion] = useState(false);
+  const introAllowed = useRef(true);
+
   useEffect(() => {
-    if (!content.current || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add('entered');
-        observer.unobserve(entry.target);
-      }
-    }, { threshold: 0.1 });
-    content.current.querySelectorAll('[data-entrance]').forEach(section => observer.observe(section));
-    return () => observer.disconnect();
+    const preference = matchMedia('(prefers-reduced-motion: reduce)');
+    const markInteraction = () => { introAllowed.current = false; };
+    const deadline = window.setTimeout(markInteraction, 2800);
+    const sync = () => setMotion(!preference.matches);
+    const frame = requestAnimationFrame(sync);
+    preference.addEventListener('change', sync);
+    const events = ['pointerdown', 'keydown', 'scroll'] as const;
+    events.forEach(event => window.addEventListener(event, markInteraction, { passive: true }));
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(deadline);
+      preference.removeEventListener('change', sync);
+      events.forEach(event => window.removeEventListener(event, markInteraction));
+    };
   }, []);
 
   return (
-    <div className="wedding-site">
-      <main ref={content}>
+    <div className="wedding-site" ref={site}>
+      {motion && <Suspense fallback={null}><Cinematic site={site} introAllowed={introAllowed} /></Suspense>}
+      <main>
         <Invitation />
         <Rsvp />
         <Registry />
       </main>
       <footer>
-        <img className="footer-emblem" src="/assets/invitation-emblem.png" alt="" width="231" height="133" />
+        <img className="footer-flowers" src="/assets/cinematic/lower-left.webp" alt="" loading="lazy" />
+        <img className="footer-traditional" src="/assets/cinematic/traditional.webp" alt="" loading="lazy" />
+        <img className="footer-emblem" src="/assets/cinematic/emblem.webp" alt="" width="237" height="157" />
         <p className="footer-names">Thami &amp; Wesley Willis</p>
         <time dateTime={WEDDING_ISO}>{WEDDING_DATE_LABEL}</time>
         <nav aria-label="Footer links">

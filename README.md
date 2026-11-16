@@ -17,7 +17,9 @@ npx tsx scripts/test-rsvp.ts
 npm run verify
 ```
 
-Browser verification uses the dev server and a local Google Chrome installation. It covers layouts from 360px to 1920px, keyboard controls, registry accordions, clipboard actions and mocked RSVP submissions. Screenshots are written to `verification/redesign/`. To include an axe accessibility scan at 390px and 1440px, set `AXE_SCRIPT` to the local path of `axe.min.js` from axe-core.
+Browser verification uses a local Google Chrome installation. It covers 360px to 1920px layouts with WebGL and reduced motion, intro skip and completion, context loss, clipboard actions, registry controls and mocked RSVP submissions. Screenshots are written to `verification/cinematic/`. Set `VERIFY_URL` to test a local production preview or `AXE_SCRIPT` to the path of `axe.min.js` for an accessibility scan at 390px and 1440px.
+
+The invitation, RSVP and registry render before the cinematic enhancement loads. The Three.js scene uses WebP crops from the supplied invitation and pauses offscreen. Reduced-motion visitors and browsers without WebGL use the static artwork. Visitors can skip the intro with the on-screen button or Escape. Links and the browser retain native scroll behavior.
 
 Confirm the Treasury of Love bank details with the site owner before approving publication.
 

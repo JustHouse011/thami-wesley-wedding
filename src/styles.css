@@ -20,27 +20,30 @@ button, summary { cursor: pointer; }
 section[id] { scroll-margin-top: 1.25rem; }
 .wedding-site { max-width: 1200px; margin: auto; background: white; }
 .invitation, .rsvp { position: relative; isolation: isolate; overflow: clip; }
-.invitation { padding: 1.1rem 0 1.7rem; text-align: center; }
+.invitation { padding: clamp(1.5rem, 5vw, 4rem) 0 clamp(4rem, 10vw, 9rem); text-align: center; background: #fff; }
 .invitation-copy { position: relative; max-width: 50%; margin: auto; }
 .emblem { width: clamp(112px, 22.5vw, 236px); height: auto; margin: 0 auto .2rem; }
+.cinematic-viewport { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.cinematic-viewport canvas { display: block; }
+.has-cinematic-art [data-art] { opacity: 0; }
 .invitation-art {
   position: absolute;
-  top: 0;
-  z-index: -1;
-  width: 33.5%;
+  z-index: 0;
   pointer-events: none;
-  transform: translateX(var(--art-shift, 0px));
-  transition: transform .55s ease-out;
-  animation: artwork-in .85s ease-out both;
 }
-.art-left { left: 0; }
-.art-right { right: 0; }
+.art-upper-left { top: 0; left: 0; width: 39%; }
+.art-upper-right { top: 0; right: 0; width: 31%; }
+.art-left-border { top: 17%; left: 0; width: 24%; }
+.art-right-border { top: 17%; right: 0; width: 24%; }
+.art-lower-left { bottom: 0; left: 0; width: 36%; }
+.art-lower-right { top: 62%; right: 0; width: 24%; }
+.art-traditional { bottom: 0; right: 0; width: 32%; }
 .families, .invitation-message, address, .rsvp-heading {
   font: 700 clamp(.94rem, 2.1vw, 1.4rem)/1.06 var(--serif);
   text-transform: uppercase;
   letter-spacing: .16em;
 }
-h1 { margin: .05em 0 .12em; font: 400 clamp(4.6rem, 10.3vw, 8rem)/.8 var(--serif); animation: rise .7s .1s ease-out both; }
+h1 { margin: .05em 0 .12em; font: 400 clamp(4.6rem, 10.3vw, 8rem)/.8 var(--serif); }
 .given-name, .surname, .ampersand { display: block; }
 .given-name { color: var(--gold); font-family: 'Fraunces Variable', var(--serif); font-style: italic; text-shadow: 0 2px 3px #70430d30; }
 .surname { font: 400 .53em/.8 Allura, cursive; color: #62380e; }
@@ -212,27 +215,67 @@ details[open] .chevron { rotate: 180deg; }
 .treasury .copy-status { min-height: 1.7rem; font-size: .82rem; }
 .closing { padding: 2rem 0 0; }
 .signature { font: 400 2.1rem Allura, cursive; }
-footer { text-align: center; padding: 2rem 1rem; background: #fffaf0; border-top: 1px solid #e4ce9e; }
+footer { position: relative; isolation: isolate; overflow: clip; text-align: center; padding: 2rem 1rem; background: #fffaf0; border-top: 1px solid #e4ce9e; }
+.footer-flowers, .footer-traditional { position: absolute; bottom: 0; z-index: -1; width: clamp(72px, 18%, 220px); pointer-events: none; }
+.footer-flowers { left: 0; }
+.footer-traditional { right: 0; }
 .footer-emblem { width: 70px; height: auto; margin: 0 auto .5rem; }
 .footer-names { font: 700 1.65rem var(--serif); }
 footer time, footer nav, .credit { font-size: .85rem; }
 footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem 1rem; margin: .65rem 0; }
 footer nav a { display: inline-flex; align-items: center; min-height: 44px; text-underline-offset: .25em; }
 .credit { color: #6c5039; }
-.entered { animation: rise .48s ease-out both; }
-@keyframes rise { from { opacity: .65; translate: 0 9px; } to { opacity: 1; translate: 0; } }
-@keyframes artwork-in { from { opacity: .35; translate: 0 -9px; } to { opacity: 1; translate: 0; } }
+.cinematic-intro {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center;
+  background: #fffdf8; perspective: 800px; pointer-events: none; overflow: clip;
+}
+.intro-emblem, .intro-orbit { position: absolute; width: clamp(160px, 23vw, 265px); }
+.intro-emblem { aspect-ratio: 237 / 157; transform-style: preserve-3d; }
+.intro-emblem > div {
+  position: absolute; top: 0; bottom: 0; width: 50%;
+  background: url('/assets/cinematic/emblem.webp') no-repeat; background-size: 200% 100%;
+}
+.intro-door-left { left: 0; background-position: left; transform-origin: left center; }
+.intro-door-right { right: 0; background-position: right; transform-origin: right center; }
+.intro-orbit { width: clamp(220px, 35vw, 370px); aspect-ratio: 1; }
+.intro-orbit i { position: absolute; inset: 0; }
+.intro-orbit i::after {
+  content: ''; position: absolute; left: 50%; top: 8%; width: 4px; aspect-ratio: 1;
+  border-radius: 50%; background: #ac7626; box-shadow: 0 0 8px #dca63b;
+}
+.intro-orbit i:nth-child(3n)::after { top: 1%; width: 3px; }
+.intro-skip { position: absolute; bottom: max(1.8rem, env(safe-area-inset-bottom)); pointer-events: auto; }
+.rsvp-outline { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; color: #c18a35; }
+.rsvp-outline rect { stroke-dasharray: 1; stroke-dashoffset: 1; stroke-width: 1.5px; }
+.rsvp-card:focus-within { transform: none !important; }
+input:not([type=radio]), select, textarea { transition: border-color .25s, box-shadow .25s; }
+input:not([type=radio]):focus, select:focus, textarea:focus { border-bottom-color: #9f6212; box-shadow: inset 0 -2px #be832f; }
+.form-status:not(.is-error) span { display: inline-block; color: #895708; animation: check-in .38s ease-out both; }
+@keyframes check-in { from { transform: scale(.55); opacity: .4; } to { transform: scale(1); opacity: 1; } }
+.gift-reveal details { transition: box-shadow .2s ease, transform .23s ease-out; }
+@media (hover: hover) and (pointer: fine) {
+  .gift-reveal details.is-lit {
+    transform: perspective(750px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    background-image: radial-gradient(ellipse at var(--light-x, 50%) var(--light-y, 50%), #f7e4bb90, transparent 62%);
+    box-shadow: 0 8px 23px #70430d20;
+  }
+}
 
 @media (max-width: 800px) {
   .invitation-copy { max-width: 58%; }
-  .invitation-art { width: 27%; }
+  .art-left-border, .art-right-border { width: 22%; }
   .rsvp-card { width: 80%; }
   .rsvp-calabash { width: 22%; bottom: 0; }
 }
 @media (max-width: 560px) {
   .invitation { padding-top: 1.3rem; }
   .invitation-copy { max-width: none; width: calc(100% - 4.5rem); }
-  .invitation-art { width: 24%; }
+  .art-upper-left { width: 27%; }
+  .art-upper-right { width: 24%; }
+  .art-left-border, .art-right-border { top: clamp(3.5rem, 16vw, 5rem); width: 22%; }
+  .art-lower-left { width: 27%; }
+  .art-lower-right { top: auto; bottom: 12%; width: 16%; }
+  .art-traditional { width: 25%; }
   .families, .invitation-message, address { letter-spacing: .11em; }
   .event-date { font-size: clamp(1.36rem, 5.2vw, 1.8rem); }
   .rsvp { padding-bottom: 2.2rem; }
@@ -241,7 +284,9 @@ footer nav a { display: inline-flex; align-items: center; min-height: 44px; text
   .rsvp-calabash { width: 16%; }
   .field-row, .gifts { grid-template-columns: 1fr; gap: .65rem; }
   .registry { padding-inline: .9rem; }
+  .footer-flowers, .footer-traditional { opacity: .55; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .cinematic-intro, .cinematic-viewport { display: none; }
 }

@@ -59,7 +59,7 @@ function Treasury() {
 
 export default function Registry() {
   return (
-    <section className="registry" id="gift-registry" aria-labelledby="registry-title" data-entrance>
+    <section className="registry" id="gift-registry" aria-labelledby="registry-title">
       <div className="gold-divider" aria-hidden="true"><span /></div>
       <header>
         <h2 id="registry-title">The Art of Gay-ving</h2>
@@ -72,16 +72,18 @@ export default function Registry() {
       </header>
       <div className="gifts">
         {gifts.map(([title, path], index) => (
-          <details key={title}>
-            <summary>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={path} /></svg>
-              <span>{title}</span>
-              <svg className="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
-            </summary>
-            <div className="gift-description">
-              {giftDescriptions[index].map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-            </div>
-          </details>
+          <div className="gift-reveal" key={title}>
+            <details>
+              <summary>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d={path} /></svg>
+                <span>{title}</span>
+                <svg className="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div className="gift-description">
+                {giftDescriptions[index].map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+              </div>
+            </details>
+          </div>
         ))}
       </div>
       <Treasury />

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 
-export async function verifyRsvp(browser) {
+export async function verifyRsvp(browser, url) {
   for (const width of [390, 1440]) {
     const page = await browser.newPage({ viewport: { width, height: 1000 }, reducedMotion: 'reduce' });
     try {
@@ -13,7 +13,7 @@ export async function verifyRsvp(browser) {
         const success = mode !== 'error';
         await route.fulfill({ status: success ? 200 : 502, json: { success } });
       });
-      await page.goto('http://127.0.0.1:5173/');
+      await page.goto(`${url}/`);
       const form = page.getByRole('form', { name: 'RSVP form' });
       const first = form.getByRole('textbox', { name: 'First Name' });
       const last = form.getByRole('textbox', { name: 'Last Name' });

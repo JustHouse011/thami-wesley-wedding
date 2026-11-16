@@ -55,11 +55,14 @@ export default function Rsvp() {
     }
   }
   return (
-    <section className="rsvp" id="rsvp" aria-labelledby="rsvp-title" data-entrance>
+    <section className="rsvp" id="rsvp" aria-labelledby="rsvp-title">
       <div className="gold-divider" aria-hidden="true"><span /></div>
       <img className="rsvp-flowers" src="/assets/rsvp-flowers.png" alt="" loading="lazy" />
       <img className="rsvp-calabash" src="/assets/rsvp-calabash.png" alt="" loading="lazy" />
       <div className="rsvp-card">
+        <svg className="rsvp-outline" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <rect x=".6" y=".6" width="98.8" height="98.8" rx="4" pathLength="1" vectorEffect="non-scaling-stroke" />
+        </svg>
         <h2 className="gold-pill rsvp-title" id="rsvp-title">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 10h18m-13 5 3 3 5-5" /></svg>
           RSVP

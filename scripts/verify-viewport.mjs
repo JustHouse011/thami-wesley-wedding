@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 
-export async function verifyViewports(browser, output) {
+export async function verifyViewports(browser, output, url) {
   for (const width of [360, 390, 768, 1024, 1440, 1920]) {
     const page = await browser.newPage({
       viewport: { width, height: 1000 },
@@ -11,9 +11,12 @@ export async function verifyViewports(browser, output) {
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
       page.on('response', response => { if (response.status() >= 400) errors.push(response.url()); });
-      await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
+      await page.goto(`${url}/`, { waitUntil: 'networkidle' });
       await page.evaluate(() => document.fonts.ready);
-      await page.locator('img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
+      await page.locator('img').evaluateAll(images => Promise.all(images.map(image => {
+        image.loading = 'eager';
+        return image.decode();
+      })));
 
       assert.equal(await page.title(), 'Thami & Wesley — 27 November 2026');
       assert.match(await page.locator('h1').innerText(), /Thami\s+Kotlolo\s+&\s+Wesley\s+Willis/);
@@ -26,6 +29,7 @@ export async function verifyViewports(browser, output) {
         }),
       })), { width, sectionsInBounds: true });
       assert.equal(await page.getByRole('form', { name: 'RSVP form' }).count(), 1);
+      assert.equal(await page.locator('.cinematic-viewport canvas, .cinematic-intro').count(), 0);
 
       if (width === 390 || width === 1440) {
         if (process.env.AXE_SCRIPT) {
@@ -36,7 +40,7 @@ export async function verifyViewports(browser, output) {
           });
           assert.deepEqual(violations, []);
         }
-        await page.screenshot({ path: `${output}/${width === 390 ? 'mobile' : 'desktop'}.png`, fullPage: true });
+        await page.screenshot({ path: `${output}/${width === 390 ? 'mobile-static' : 'desktop-static'}.png`, fullPage: true });
         await page.locator('#wedding').screenshot({ path: `${output}/invitation-${width}.png` });
         await page.locator('#rsvp').screenshot({ path: `${output}/rsvp-${width}.png` });
       }
