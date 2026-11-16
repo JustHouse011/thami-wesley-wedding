@@ -39,6 +39,30 @@ async function assertCanvasArtwork(page) {
   assert.ok(coloredPixels > 30, 'WebGL paints the emblem after the static image becomes transparent');
 }
 
+async function verifyPointerAndScroll(page) {
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  const hero = page.locator(heroSelector);
+  const stage = await hero.boundingBox();
+  const emblem = await page.locator('.emblem').boundingBox();
+  const clip = { x: Math.round(emblem.x), y: Math.round(emblem.y), width: Math.floor(emblem.width), height: Math.floor(emblem.height) };
+  await hero.dispatchEvent('pointermove', { pointerType: 'mouse', clientX: stage.x + 40, clientY: stage.y + 120 });
+  await page.waitForTimeout(500);
+  const left = await page.screenshot({ clip });
+  await hero.dispatchEvent('pointermove', { pointerType: 'mouse', clientX: stage.x + stage.width - 40, clientY: stage.y + 120 });
+  await page.waitForTimeout(500);
+  const right = await page.screenshot({ clip });
+  assert.notDeepEqual(left, right, 'The invitation emblem follows the desktop pointer');
+
+  await page.locator('#rsvp').evaluate(section => window.scrollTo({ top: section.offsetTop - innerHeight * 0.75, behavior: 'instant' }));
+  await page.waitForFunction(() => {
+    const outline = document.querySelector('.rsvp-outline rect');
+    const offset = parseFloat(getComputedStyle(outline).strokeDashoffset);
+    return offset > 0 && offset < 1;
+  });
+  await page.locator('#rsvp').evaluate(section => section.scrollIntoView({ behavior: 'instant' }));
+  await page.waitForFunction(() => parseFloat(getComputedStyle(document.querySelector('.rsvp-outline rect')).strokeDashoffset) === 0);
+}
+
 export async function verifyCinematic(browser, output, url) {
   for (const width of widths) {
     const page = await browser.newPage({ viewport: { width, height: 920 }, hasTouch: width < 650, isMobile: width < 650 });
@@ -61,6 +85,7 @@ export async function verifyCinematic(browser, output, url) {
       }
       if (width === 390) await verifyRsvpWorks(page);
       if (width === 1440) {
+        await verifyPointerAndScroll(page);
         const firstCard = page.locator('.gifts details').first();
         await firstCard.locator('summary').hover();
         assert.equal(await firstCard.evaluate(card => card.classList.contains('is-lit')), true);

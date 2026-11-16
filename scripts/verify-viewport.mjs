@@ -20,7 +20,14 @@ export async function verifyViewports(browser, output, url) {
 
       assert.equal(await page.title(), 'Thami & Wesley — 27 November 2026');
       assert.match(await page.locator('h1').innerText(), /Thami\s+Kotlolo\s+&\s+Wesley\s+Willis/);
+      assert.match(await page.locator('.event-date').innerText(), /^Friday, 27 November 2026$/i);
+      assert.match(await page.locator('.event-time').innerText(), /14:00/);
       assert.match(await page.locator('address').innerText(), /22913 Selalelo Street\s+Ext 4, Mamelodi East\s+Pretoria/i);
+      assert.match(await page.locator('.dress-code').innerText(), /Casually Traditional/i);
+      const contact = page.getByRole('link', { name: '+27 79 075 6607' });
+      assert.match(await page.locator('.contact').innerText(), /Barbara Ledwaba/i);
+      assert.equal(await contact.getAttribute('href'), 'tel:+27790756607');
+      assert.match(await page.locator('.footer-names').innerText(), /^Thami Kotlolo & Wesley Willis$/i);
       assert.deepEqual(await page.evaluate(() => ({
         width: document.documentElement.scrollWidth,
         sectionsInBounds: [...document.querySelectorAll('main > section')].every(section => {

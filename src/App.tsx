@@ -73,7 +73,7 @@ export default function App() {
         <img className="footer-flowers" src="/assets/cinematic/lower-left.webp" alt="" loading="lazy" />
         <img className="footer-traditional" src="/assets/cinematic/traditional.webp" alt="" loading="lazy" />
         <img className="footer-emblem" src="/assets/cinematic/emblem.webp" alt="" width="237" height="157" />
-        <p className="footer-names">Thami &amp; Wesley Willis</p>
+        <p className="footer-names">Thami Kotlolo &amp; Wesley Willis</p>
         <time dateTime={WEDDING_ISO}>{WEDDING_DATE_LABEL}</time>
         <nav aria-label="Footer links">
           <a href="#wedding">Wedding Details</a><a href="#rsvp">RSVP</a><a href="#gift-registry">The Art of Gay-ving</a>

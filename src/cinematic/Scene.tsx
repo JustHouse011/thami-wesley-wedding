@@ -1,7 +1,6 @@
 import { Suspense, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useTexture } from '@react-three/drei';
-import { CircleGeometry, MathUtils, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, SRGBColorSpace, type Group, type Mesh } from 'three';
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
+import { CircleGeometry, MathUtils, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, SRGBColorSpace, TextureLoader, type Group, type Mesh } from 'three';
 import { invitationArtwork, petalTexture } from '../artwork';
 import type { SceneMotion } from './Cinematic';
 
@@ -16,7 +15,7 @@ interface SceneProps {
 }
 
 function Layers({ hero, motion, onReady, onFailure }: SceneProps) {
-  const maps = useTexture(textures);
+  const maps = useLoader(TextureLoader, textures);
   const size = useThree(state => state.size);
   const gl = useThree(state => state.gl);
   const invalidate = useThree(state => state.invalidate);
@@ -37,11 +36,13 @@ function Layers({ hero, motion, onReady, onFailure }: SceneProps) {
 
   useLayoutEffect(() => {
     for (const map of maps) {
-      if (map.colorSpace === SRGBColorSpace) continue;
-      map.colorSpace = SRGBColorSpace;
-      map.needsUpdate = true;
+      if (map.colorSpace !== SRGBColorSpace) {
+        map.colorSpace = SRGBColorSpace;
+        map.needsUpdate = true;
+      }
+      gl.initTexture(map);
     }
-  }, [maps]);
+  }, [gl, maps]);
   useEffect(() => () => {
     plane.dispose();
     point.dispose();

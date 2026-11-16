@@ -15,7 +15,7 @@ export function choreograph(site: HTMLElement, hero: HTMLElement, motion: SceneM
     rsvp.from('.rsvp-flowers', { x: 20, rotation: 3, opacity: 0.65 }, 0);
     rsvp.from('.rsvp-calabash', { x: -18, opacity: 0.7 }, 0);
     rsvp.from('.rsvp-card', { y: 18, rotateX: 3, transformPerspective: 1100, transformOrigin: 'center top' }, 0);
-    rsvp.fromTo('.rsvp-outline rect', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.65 }, 0.05);
+    rsvp.fromTo('.rsvp-outline rect', { strokeDashoffset: 1 }, { strokeDashoffset: 0, autoRound: false, duration: 0.65 }, 0.05);
     rsvp.from('.rsvp-title', { opacity: 0.74 }, 0.15);
     rsvp.from('.rsvp-heading', { opacity: 0.74, y: 5 }, 0.22);
     rsvp.from('.form-fields > *', { y: 6, stagger: 0.075, duration: 0.3 }, 0.24);
