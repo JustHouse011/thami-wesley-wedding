@@ -1,12 +1,34 @@
 import { useRef, useState, type FormEvent } from 'react';
+import { isRsvpEmail } from './rsvp-email';
 import { MAX_GUESTS } from './wedding';
+
+const confirmationQueued = 'Your confirmation email was queued for sending.';
+const confirmationFailed = 'Your RSVP is saved. We couldn’t queue your confirmation email.';
+const retryStorageKey = 'wedding-rsvp-confirmation-retry';
+
+function storedConfirmationRetry() {
+  try { return sessionStorage.getItem(retryStorageKey); } catch { return null; }
+}
 
 export default function Rsvp() {
   const [attendance, setAttendance] = useState('yes');
   const [sending, setSending] = useState(false);
-  const [status, setStatus] = useState<{ message: string; error: boolean } | null>(null);
   const inFlight = useRef(false);
-  const lastAttempt = useRef<{ payload: string; key: string } | null>(null);
+  const [confirmationRetryToken, setConfirmationRetryToken] = useState(storedConfirmationRetry);
+  const [status, setStatus] = useState<{ message: string; error: boolean } | null>(
+    () => confirmationRetryToken ? { message: confirmationFailed, error: false } : null,
+  );
+  const [retryingConfirmation, setRetryingConfirmation] = useState(false);
+
+  function rememberConfirmationRetry(token: string | null) {
+    setConfirmationRetryToken(token);
+    try {
+      if (token) sessionStorage.setItem(retryStorageKey, token);
+      else sessionStorage.removeItem(retryStorageKey);
+    } catch {
+      // The retry still works on this page when session storage is unavailable.
+    }
+  }
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (inFlight.current) return;
@@ -26,9 +48,11 @@ export default function Rsvp() {
       input.setCustomValidity(payload[name] ? '' : 'Please complete this field.');
       if (!payload[name]) { input.reportValidity(); return; }
     }
-    const serialized = JSON.stringify(payload);
-    if (lastAttempt.current?.payload !== serialized) {
-      lastAttempt.current = { payload: serialized, key: crypto.randomUUID() };
+    if (payload.email && !isRsvpEmail(payload.email)) {
+      const input = form.elements.namedItem('email') as HTMLInputElement;
+      input.setCustomValidity('Please enter a valid email address or leave this field blank.');
+      input.reportValidity();
+      return;
     }
     inFlight.current = true;
     setSending(true);
@@ -36,22 +60,52 @@ export default function Rsvp() {
     try {
       const response = await fetch('/api/rsvp', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': lastAttempt.current!.key },
-        body: serialized,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
       const result = await response.json();
       if (!response.ok || result.success !== true) throw new Error('Submission failed');
-      setStatus({ error: false, message: payload.attendance === 'attending'
+      const thanks = payload.attendance === 'attending'
         ? `Thank you, ${payload.firstName}. We can't wait to celebrate with you!`
-        : `Thank you, ${payload.firstName}. Your RSVP has been received.` });
+        : `Thank you, ${payload.firstName}. Your RSVP has been received.`;
+      const retryToken = result.confirmation === 'retryable' && typeof result.confirmationRetryToken === 'string'
+        ? result.confirmationRetryToken : null;
+      rememberConfirmationRetry(retryToken);
+      const emailStatus = retryToken ? confirmationFailed : result.confirmation === 'accepted' ? confirmationQueued : '';
+      setStatus({ error: false, message: [thanks, emailStatus].filter(Boolean).join(' ') });
       form.reset();
       setAttendance('yes');
-      lastAttempt.current = null;
     } catch {
       setStatus({ error: true, message: "We couldn't submit your RSVP. Please try again." });
     } finally {
       inFlight.current = false;
       setSending(false);
+    }
+  }
+
+  async function retryConfirmation() {
+    if (inFlight.current || !confirmationRetryToken) return;
+    inFlight.current = true;
+    setRetryingConfirmation(true);
+    try {
+      const response = await fetch('/api/rsvp', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ confirmationRetryToken }),
+      });
+      if (response.status === 400) {
+        rememberConfirmationRetry(null);
+        setStatus({ error: false, message: 'Your RSVP is saved. The confirmation retry is no longer available.' });
+        return;
+      }
+      const result = await response.json();
+      if (!response.ok || result.success !== true || result.confirmation !== 'accepted') throw new Error('Confirmation retry failed');
+      rememberConfirmationRetry(null);
+      setStatus({ error: false, message: `Your RSVP is saved. ${confirmationQueued}` });
+    } catch {
+      setStatus({ error: false, message: `${confirmationFailed} Please try again.` });
+    } finally {
+      inFlight.current = false;
+      setRetryingConfirmation(false);
     }
   }
   return (
@@ -69,9 +123,9 @@ export default function Rsvp() {
         </h2>
         <p className="rsvp-heading">Please confirm your attendance</p>
         <p className="rsvp-intro">Kindly let us know if you will be joining us on our special day.</p>
-        <form id="rsvp-form" aria-label="RSVP form" aria-busy={sending} onSubmit={submit} onChange={event => {
+        <form id="rsvp-form" aria-label="RSVP form" aria-busy={sending || retryingConfirmation} onSubmit={submit} onChange={event => {
           if (event.target instanceof HTMLInputElement) event.target.setCustomValidity('');
-          setStatus(null);
+          if (!confirmationRetryToken) setStatus(null);
         }}>
           <fieldset className="form-fields" disabled={sending} aria-label="Your RSVP details">
             <div className="field-row">
@@ -80,7 +134,12 @@ export default function Rsvp() {
             </div>
             <div className="field-row">
               <label>Contact Number <span aria-hidden="true">*</span><input name="phone" type="tel" autoComplete="tel" maxLength={64} placeholder="+27 82 123 4567" required /></label>
-              <label>Email Address <small>(optional)</small><input name="email" type="email" autoComplete="email" maxLength={254} /></label>
+              <div>
+                <label>Email Address <small>(for RSVP confirmation)</small>
+                  <input name="email" type="email" autoComplete="email" maxLength={254} aria-describedby="rsvp-email-help" />
+                </label>
+                <small id="rsvp-email-help">Add your email for an automatic acknowledgement, or RSVP with your phone number alone.</small>
+              </div>
             </div>
             <fieldset className="attendance">
               <legend>Will you be attending? <span aria-hidden="true">*</span></legend>
@@ -98,13 +157,17 @@ export default function Rsvp() {
               <textarea name="notes" rows={3} maxLength={2000} placeholder="Let us know if there’s anything we should be aware of…" />
             </label>
           </fieldset>
-          <button className="gold-pill submit-rsvp" type="submit" disabled={sending}>
+          <button className="gold-pill submit-rsvp" type="submit" disabled={sending || retryingConfirmation}>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9L2 9 22 2ZM11 13 22 2" /></svg>
             {sending ? 'Sending RSVP…' : status?.error ? 'Retry RSVP' : 'Submit RSVP'}
           </button>
           {status && <p className={`form-status${status.error ? ' is-error' : ''}`} role={status.error ? 'alert' : 'status'}>
             {!status.error && <span aria-hidden="true">✓ </span>}{status.message}
           </p>}
+          {confirmationRetryToken && <button className="outline-button submit-rsvp" type="button"
+            disabled={sending || retryingConfirmation} onClick={retryConfirmation}>
+            {retryingConfirmation ? 'Retrying confirmation…' : 'Retry confirmation email'}
+          </button>}
         </form>
       </div>
     </section>

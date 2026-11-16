@@ -36,7 +36,9 @@ Set these server-side environment variables in Vercel for each required environm
 
 `npm run dev` serves the frontend only. To exercise actual local email delivery use Vercel's local development server (`vercel dev`) with the server environment configured, or test on a Vercel preview after deployment. Do not send test emails without deliberately configuring a sender and key.
 
-The server accepts only POST JSON, trims and validates inputs, safely escapes HTML, sends HTML and plain text, and returns success only when Resend accepts the message. Provider acceptance does not guarantee inbox delivery. The browser disables submission while sending and retains a per-attempt idempotency key for retries. Resend deduplicates that key for its retention window (24 hours); fallback keys also protect identical requests without a client key. No guest database is created.
+The server accepts POST JSON, validates and trims inputs, and sends the organiser notification to `info@thamidish.com` through Resend. If the guest supplies an email address, the server sends a separate personalised HTML and plain-text acknowledgement after Resend accepts the organiser notification. Provider acceptance does not guarantee inbox delivery.
+
+Both emails use separate keys derived from the validated RSVP. Identical requests reuse those keys within Resend’s 24-hour idempotency window. If the guest email cannot be queued, the page confirms that the RSVP is saved and offers a confirmation-only retry. The encrypted retry token survives a reload in the same tab and expires after one hour. It uses the existing server-side Resend key. No guest database is created.
 
 The RSVP API accepts the original four fields as well as optional email, guest count and notes. Legacy acceptances default to one guest and declines default to zero. The automated tests mock both successful and failed deliveries.
 
