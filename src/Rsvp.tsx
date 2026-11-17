@@ -1,9 +1,8 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { isRsvpEmail } from './rsvp-email';
-import { MAX_GUESTS } from './wedding';
 
-const confirmationQueued = 'Your confirmation email was queued for sending.';
-const confirmationFailed = 'Your RSVP is saved. We couldn’t queue your confirmation email.';
+const confirmationQueued = 'Your confirmation and any upcoming wedding reminders were queued for sending.';
+const confirmationFailed = 'Your RSVP is saved. We couldn’t queue all your RSVP emails.';
 const retryStorageKey = 'wedding-rsvp-confirmation-retry';
 
 function storedConfirmationRetry() {
@@ -37,7 +36,6 @@ export default function Rsvp() {
     const payload = {
       email: String(fields.get('email') ?? '').trim(),
       notes: String(fields.get('notes') ?? '').trim(),
-      ...(attendance === 'yes' && { guestCount: Number(fields.get('guestCount')) }),
       firstName: String(fields.get('firstName') ?? '').trim(),
       lastName: String(fields.get('lastName') ?? '').trim(),
       phone: String(fields.get('phone') ?? '').trim(),
@@ -138,7 +136,7 @@ export default function Rsvp() {
                 <label>Email Address <small>(for RSVP confirmation)</small>
                   <input name="email" type="email" autoComplete="email" maxLength={254} aria-describedby="rsvp-email-help" />
                 </label>
-                <small id="rsvp-email-help">Add your email for an automatic acknowledgement, or RSVP with your phone number alone.</small>
+                <small id="rsvp-email-help">Add your email for a confirmation and wedding reminders on 20 and 26 November at 09:00 (South African time). You can also RSVP with your phone number alone.</small>
               </div>
             </div>
             <fieldset className="attendance">
@@ -148,11 +146,6 @@ export default function Rsvp() {
                 <label><input type="radio" name="attendance" value="no" checked={attendance === 'no'} onChange={() => setAttendance('no')} />Unfortunately, I Can’t Make It</label>
               </div>
             </fieldset>
-            {attendance === 'yes' && <label>Number of Guests, Including Yourself <span aria-hidden="true">*</span>
-              <select name="guestCount" defaultValue="1" required>
-                {Array.from({ length: MAX_GUESTS }, (_, index) => <option key={index + 1}>{index + 1}</option>)}
-              </select>
-            </label>}
             <label>Special Notes <small>(optional)</small>
               <textarea name="notes" rows={3} maxLength={2000} placeholder="Let us know if there’s anything we should be aware of…" />
             </label>
@@ -166,7 +159,7 @@ export default function Rsvp() {
           </p>}
           {confirmationRetryToken && <button className="outline-button submit-rsvp" type="button"
             disabled={sending || retryingConfirmation} onClick={retryConfirmation}>
-            {retryingConfirmation ? 'Retrying confirmation…' : 'Retry confirmation email'}
+            {retryingConfirmation ? 'Retrying confirmation…' : 'Retry RSVP emails'}
           </button>}
         </form>
       </div>
