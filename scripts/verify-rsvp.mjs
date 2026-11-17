@@ -46,7 +46,7 @@ export async function verifyRsvp(browser, url) {
       assert.equal(submissions.length, 0);
       await email.fill('jane@example.com');
       await notes.fill('No nuts');
-      await guests.selectOption('3');
+      assert.equal(await guests.count(), 0);
 
       const request = page.waitForRequest('**/api/rsvp');
       await submit.click();
@@ -60,9 +60,9 @@ export async function verifyRsvp(browser, url) {
       await form.getByRole('status').waitFor();
       assert.match(await form.getByRole('status').innerText(), /Thank you, Jane.*queued for sending/);
       assert.equal(await first.inputValue(), '');
-      assert.equal(await guests.inputValue(), '1');
+      assert.equal(await guests.count(), 0);
       assert.deepEqual(submissions[0], {
-        email: 'jane@example.com', notes: 'No nuts', guestCount: 3,
+        email: 'jane@example.com', notes: 'No nuts',
         firstName: 'Jane', lastName: 'Doe', phone: '+27 82 123 4567', attendance: 'attending',
       });
 
@@ -91,7 +91,7 @@ export async function verifyRsvp(browser, url) {
       await email.fill('sam@example.com');
       mode = 'partial';
       await submit.click();
-      const retry = form.getByRole('button', { name: 'Retry confirmation email' });
+      const retry = form.getByRole('button', { name: 'Retry RSVP emails' });
       await retry.waitFor();
       assert.match(await form.getByRole('status').innerText(), /RSVP is saved.*couldn’t queue/);
       assert.equal(await first.inputValue(), '');
@@ -103,6 +103,7 @@ export async function verifyRsvp(browser, url) {
       await form.getByText(/Please try again/).waitFor();
       mode = 'success';
       await retry.click();
+      await form.getByRole('status').filter({ hasText: 'queued for sending' }).waitFor();
       await retry.waitFor({ state: 'detached' });
       assert.match(await form.getByRole('status').innerText(), /queued for sending/);
       assert.deepEqual(submissions.slice(4), Array(2).fill({ confirmationRetryToken: 'mock-retry-token' }));

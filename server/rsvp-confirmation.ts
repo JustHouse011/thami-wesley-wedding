@@ -44,12 +44,16 @@ export function readConfirmationRetry(token: unknown, secret: string): GuestConf
   }
 }
 
-export function confirmationEmail(guest: GuestConfirmation) {
-  const subject = guest.attending
+export function confirmationEmail(guest: GuestConfirmation, reminder = false) {
+  const subject = reminder ? 'A Wedding Reminder — Thami & Wesley' : guest.attending
     ? "You're Invited — Thami & Wesley's Wedding RSVP Confirmed"
     : 'Thank You for Responding — Thami & Wesley';
   const greeting = `Dear ${guest.firstName},`;
-  const message = guest.attending ? [
+  const message = reminder ? [
+    'We can’t wait to celebrate with you on Friday, 27 November!',
+    'Here are the details for our day of love, culture and togetherness.',
+    'Contact Barbara Ledwaba on +27 79 075 6607 if you need any help.',
+  ] : guest.attending ? [
     'Thank you for confirming your attendance!',
     'We are delighted that you will be joining us as we celebrate our love, culture and togetherness.',
   ] : [
@@ -61,7 +65,6 @@ export function confirmationEmail(guest: GuestConfirmation) {
     `${WEDDING_TIME} — Until the music stops`,
     WEDDING_ADDRESS.join(', '),
     `Dress Code: ${DRESS_CODE}`,
-    `Confirmed guest count (including you): ${guest.guestCount}`,
   ] : [];
   const text = ['Thami & Wesley', greeting, ...message, details.join('\n'), 'With love,\nThami & Wesley'].filter(Boolean).join('\n\n');
   const paragraphs = [greeting, ...message].map(value => `<p style="margin:0 0 16px">${escapeHtml(value)}</p>`).join('');

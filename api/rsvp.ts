@@ -4,7 +4,7 @@ import { confirmationEmail, createConfirmationRetry, escapeHtml, readConfirmatio
 import { isRsvpEmail } from '../src/rsvp-email.js';
 import { DRESS_CODE, MAX_GUESTS, WEDDING_ADDRESS, WEDDING_DATE_LABEL, WEDDING_TIME } from '../src/wedding.js';
 
-type Email = Omit<ReturnType<typeof confirmationEmail>, 'to'> & { to: string | string[] };
+type Email = Omit<ReturnType<typeof confirmationEmail>, 'to'> & { to: string | string[]; scheduled_at?: string };
 
 async function sendEmail(apiKey: string, from: string, email: Email, idempotencyKey: string) {
   try {
@@ -23,8 +23,18 @@ async function sendEmail(apiKey: string, from: string, email: Email, idempotency
   }
 }
 
-function sendConfirmation(apiKey: string, from: string, guest: GuestConfirmation) {
-  return sendEmail(apiKey, from, confirmationEmail(guest), `rsvp-guest-${guest.digest}`);
+async function sendConfirmation(apiKey: string, from: string, guest: GuestConfirmation) {
+  if (!await sendEmail(apiKey, from, confirmationEmail(guest), `rsvp-guest-v2-${guest.digest}`)) return false;
+  if (!guest.attending) return true;
+  // Resend stores these scheduled messages. Skip dates that have already passed.
+  const reminders = ['2026-11-20T09:00:00+02:00', '2026-11-26T09:00:00+02:00'];
+  for (const scheduled_at of reminders) {
+    if (Date.parse(scheduled_at) <= Date.now()) continue;
+    const email = { ...confirmationEmail(guest, true), scheduled_at };
+    const accepted = await sendEmail(apiKey, from, email, `rsvp-reminder-${guest.digest}-${scheduled_at.slice(0, 10)}`);
+    if (!accepted) return false;
+  }
+  return true;
 }
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
@@ -84,7 +94,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
   const attendanceLabel = attendance === 'attending' ? 'Attending' : 'Unable to Attend';
   const details = [
     ['Guest', guest], ['Phone', phone], ['Email', email || 'Not provided'],
-    ['Attendance', attendanceLabel], ['Guest count', String(guestCount)], ['Special notes', notes || 'None'],
+    ['Attendance', attendanceLabel], ['Special notes', notes || 'None'],
     ['Event', 'Thami Kotlolo & Wesley Willis'], ['Date', WEDDING_DATE_LABEL],
     ['Time', `${WEDDING_TIME} (until the music stops)`], ['Venue', WEDDING_ADDRESS.join('\n')],
     ['Dress code', DRESS_CODE],
@@ -101,7 +111,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
     .digest('hex');
   const saved = await sendEmail(apiKey, from, {
     to: 'info@thamidish.com', subject: `Wedding RSVP — ${guest}`, html, text,
-  }, `rsvp-${digest}-${digest}`);
+  }, `rsvp-v2-${digest}-${digest}`);
   if (!saved) return response.status(502).json({ error: 'Unable to deliver RSVP' });
   if (!email) return response.status(200).json({ success: true, confirmation: 'not_requested' });
 

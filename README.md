@@ -42,6 +42,8 @@ Both emails use separate keys derived from the validated RSVP. Identical request
 
 The RSVP API accepts the original four fields as well as optional email, guest count and notes. Legacy acceptances default to one guest and declines default to zero. The automated tests mock both successful and failed deliveries.
 
+The form no longer asks for a guest count. Attending guests who provide an email receive reminders scheduled through Resend for 20 and 26 November 2026 at 09:00 South African time. Dates already passed are skipped. Reminder scheduling uses separate idempotency keys and the email retry flow. This applies to new submissions. Earlier RSVPs require a separate backfill from the organiser’s records. Scheduled messages can be cancelled in Resend if attendance changes.
+
 The artwork used in the redesign was extracted from the supplied invitation. Font files are served locally from Fontsource packages. Earlier Figma assets and verification captures are retained for reference.
 
 
